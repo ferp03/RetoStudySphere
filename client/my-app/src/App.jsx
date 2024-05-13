@@ -31,7 +31,18 @@ function App() {
           handlePageToggle={handlePageToggle}
         />
       ) : (
-        <Login onAuthentication={handleAuthentication} />
+        <Login
+          onAuthentication={handleAuthentication}
+          togglePage={togglePage} // Pasamos togglePage para cambiar a la página de registro
+        />
+      )}
+      {!isSignUp && (
+        <p>
+          ¿No tienes una cuenta?{' '}
+          <span onClick={togglePage} style={{ cursor: 'pointer', color: 'blue' }}>
+            Sign Up
+          </span>
+        </p>
       )}
     </div>
   );
