@@ -1,42 +1,38 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './SignUp';
 import Login from './Login';
 import MainPage from './MainPage';
-import './styles.css';
+
 
 function App() {
-  const [isSignUp, setIsSignUp] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const togglePage = () => {
-    setIsSignUp(!isSignUp);
-  };
+  const [isSignUp, setIsSignUp] = useState(true);
 
   const handleAuthentication = () => {
     setIsAuthenticated(true);
   };
 
-  const handlePageToggle = () => {
-    setIsSignUp(false);
+  const togglePage = () => {
+    setIsSignUp(!isSignUp);
   };
 
   return (
-    <div>
-      {isAuthenticated ? (
-        <MainPage />
-      ) : isSignUp ? (
-        <SignUp
-          onAuthentication={handleAuthentication}
-          togglePage={togglePage}
-          handlePageToggle={handlePageToggle}
-        />
-      ) : (
-        <Login
-          onAuthentication={handleAuthentication}
-          togglePage={togglePage} // Pasamos togglePage para cambiar a la página de registro
-        />
-      )}
-    </div>
+    <Router>
+      <Routes>
+        {isAuthenticated ? ( //usuario ya autentificado
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+          </Routes>
+        ) : (
+          <>
+            <Route path="/" element={isSignUp ? <SignUp onAuthentication={handleAuthentication} togglePage={togglePage} /> : <Login onAuthentication={handleAuthentication} togglePage={togglePage} />} />
+            <Route path="/signup" element={<SignUp onAuthentication={handleAuthentication} togglePage={togglePage} />} />
+            <Route path="/login" element={<Login onAuthentication={handleAuthentication} togglePage={togglePage} />} />
+          </>
+        )}
+      </Routes>
+    </Router>
   );
 }
 

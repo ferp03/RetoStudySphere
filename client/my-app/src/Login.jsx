@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import './LoginForm.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como prop
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
       </div>
       <p>
         ¿No tienes una cuenta?{' '}
-        <span onClick={handleSignUpClick} style={{ cursor: 'pointer', color: 'blue' }}>
+        <span onClick={navigate('/signup')} style={{ cursor: 'pointer', color: 'blue' }}>
           Sign Up
         </span>
       </p>

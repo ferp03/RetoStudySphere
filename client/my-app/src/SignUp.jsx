@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUpForm.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ onAuthentication, togglePage, handlePageToggle }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isTeacher, setIsTeacher] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,8 +74,8 @@ const SignUp = ({ onAuthentication, togglePage, handlePageToggle }) => {
       </div>
       <p>
         Have already an account?{' '}
-        <span onClick={handlePageToggle} style={{ cursor: 'pointer', color: 'blue' }}>
-          Sign in
+        <span onClick={navigate('/login')} style={{ cursor: 'pointer', color: 'blue' }}>
+          Log in
         </span>
       </p>
     </div>
