@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUpForm.css';
 import '@fortawesome/fontawesome-free/css/all.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({ onAuthentication, togglePage, handlePageToggle }) => {
+const SignUp = ({ onAuthentication }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,10 +26,15 @@ const SignUp = ({ onAuthentication, togglePage, handlePageToggle }) => {
       console.log(response.data);
       if (response.data.authenticated) {
         onAuthentication();
+        handleLoginClick();
       }
     } catch (error) {
       console.error('Error al registrarse:', error);
     }
+  };
+
+  const handleLoginClick = () =>{
+    navigate('/');
   };
 
   return (
@@ -74,8 +79,8 @@ const SignUp = ({ onAuthentication, togglePage, handlePageToggle }) => {
       </div>
       <p>
         Have already an account?{' '}
-        <span onClick={navigate('/login')} style={{ cursor: 'pointer', color: 'blue' }}>
-          Log in
+        <span onClick={handleLoginClick} style={{ cursor: 'pointer', color: 'blue' }}>
+          Login
         </span>
       </p>
     </div>

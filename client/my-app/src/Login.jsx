@@ -4,7 +4,7 @@ import './LoginForm.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como prop
+const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
   };
 
   const handleSignUpClick = () => {
-    togglePage(); // Llama a la función togglePage para cambiar al formulario de registro
+    navigate('/signup');
   };
 
   return (
@@ -55,7 +55,7 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
       </div>
       <p>
         ¿No tienes una cuenta?{' '}
-        <span onClick={navigate('/signup')} style={{ cursor: 'pointer', color: 'blue' }}>
+        <span onClick={handleSignUpClick} style={{ cursor: 'pointer', color: 'blue' }}>
           Sign Up
         </span>
       </p>
