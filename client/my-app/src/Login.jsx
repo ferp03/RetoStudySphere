@@ -49,7 +49,7 @@ const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop
       </form>
       <div className="social-buttons">
         <button className="google-button">
-          <i className="fab fa-google"></i> {/* Icono de Google */}
+          <i className="fab fa-google" style={{paddingRight: '10px'}}></i> {/* Icono de Google */}
           Continuar con Google
         </button>
       </div>
