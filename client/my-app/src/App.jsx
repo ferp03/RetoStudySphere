@@ -38,7 +38,7 @@ function App() {
       )}
       {!isSignUp && (
         <p>
-          ¿No tienes una cuenta?{' '}
+          ¿No tienes una cuen ta?{' '}
           <span onClick={togglePage} style={{ cursor: 'pointer', color: 'blue' }}>
             Sign Up
           </span>
