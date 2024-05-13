@@ -39,7 +39,7 @@ const SignUp = ({ onAuthentication }) => {
 
   return (
     <div className="sign-up-form">
-      <h2>Get Started!</h2>
+      <h2>Let's Get Started!</h2>
       <p>We are happy to have you here</p>
       <form onSubmit={handleSubmit}>
         <input
@@ -73,7 +73,7 @@ const SignUp = ({ onAuthentication }) => {
       <p>or continue with</p>
       <div className="social-buttons">
         <button className="google-button">
-          <i className="fab fa-google"></i> {/* Icono de Google */}
+          <i className="fab fa-google" style={{paddingRight: '10px'}}></i> {/* Icono de Google */}
           Sign in with Google
         </button>
       </div>
