@@ -7,13 +7,13 @@ import axios from "axios";
 import cors from "cors";
 
 const app = express();
-const port = 5000;
+const port = 8000;
 const saltRounds = 10;
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "secrets",
-  password: "maple",
+  database: "RETO",
+  password: "Fpg081203",
   port: 5432,
 });
 db.connect();
