@@ -24,6 +24,10 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
     }
   };
 
+  const handleSignUpClick = () => {
+    togglePage(); // Llama a la función togglePage para cambiar al formulario de registro
+  };
+
   return (
     <div className="login-form">
       <h2>Inicio de sesión</h2>
@@ -50,7 +54,7 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
       </div>
       <p>
         ¿No tienes una cuenta?{' '}
-        <span onClick={togglePage} style={{ cursor: 'pointer', color: 'blue' }}>
+        <span onClick={handleSignUpClick} style={{ cursor: 'pointer', color: 'blue' }}>
           Sign Up
         </span>
       </p>
