@@ -1,25 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './LoginDiseño.css';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const LoginDiseño = () => {
+const LoginDiseño = ({ onAuthentication }) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post("http://localhost:8000/login", {
+            email,
+            password,
+          });
+          console.log(response.data);
+          if (response.data.authenticated) {
+            onAuthentication();
+            handleLoginClick();
+          }
+        } catch (error) {
+          console.error("Error al iniciar sesión:", error);
+        }
+      };
+
+      const handleSignUpClick = () => {
+        navigate('/disenoS');
+      };
+
+      const handleLoginClick = () =>{
+        navigate('/');
+      };
+    
+
 return(
     <div className='backgroundContainer'>
             <div className='LoginContainer'>
-                <div className='FormsContainer'>
+                <form className='FormsContainer' onSubmit={handleSubmit}>
                     <h2 style={{margin: 0}}>¡Bienvenido!</h2>
                     <h5 style={{margin: 0}}>Ingresa tus credenciales para ingresar</h5>
+                {/* Forms e inputs */}
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Correo electrónico</h3>
                         <i className="fa-solid fa-envelope" style={{marginBottom: 6}}></i>
                     </div>
-                        <input className='ovalInput'/>
+                        <input className='ovalInput' 
+                        type='email' 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)}/>
+                   
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Contraseña</h3>
                         <i className="fa-solid fa-lock" style={{marginBottom: 6}}></i>
                     </div>
-                        <input className='ovalInput'/>
+                        <input className='ovalInput' 
+                        type='password' 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)}/>
                     
-
+                {/* Recuerdame y olvidé mi contraseña */}
                         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginTop: 20, marginBottom: 20}}>
                             <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
@@ -29,26 +69,31 @@ return(
                             </div>
                             <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline'}}>Olvidé mi contraseña</label>
                         </div>
-
+                {/* Botón de Log In */}
                         <div className='LoginButtonContainer'>
-                            <button type="button" className="btn btn-dark" style={{width: '90%', height: '60px', borderRadius: '15px'}}>Log In</button>
+                            <button type="submit" className="btn btn-dark" style={{width: '90%', height: '60px', borderRadius: '15px'}}>Log In</button>
                         </div>
                         <div className='LoginLinesContainer'>
                             <div className='LoginLines'/>
                             <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>o continuar con</p>
                             <div className='LoginLines'/>
                         </div>
+                {/* Botón de Google  */}
                         <div className='LoginGoogleButtonContainer'>
                             <button type="button" className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
                                 <i className="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
                                 Google
                             </button>
                         </div>
+                {/* Redirect a sign up */}
                         <div className='LoginRegistrateContainer'>
                             <label>¿No tienes cuenta?</label>
-                            <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline', marginLeft: 5}}> Regístrate</label>
+                            <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline', marginLeft: 5}}
+                                onClick={handleSignUpClick}> 
+                                Regístrate
+                            </label>
                         </div>
-                </div>
+                </form>
             </div> 
 
             <div className='LogoContainer'>

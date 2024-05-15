@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './LoginForm.css';
-import '@fortawesome/fontawesome-free/css/all.css';
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop

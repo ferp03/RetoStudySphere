@@ -26,8 +26,8 @@ function App() {
         ) : (
           <>
           {/* rutas de prueba */}
-          <Route path="/disenoL" element={<LoginDiseño/>} />
-          <Route path="/disenoS"  element={<SignUpDiseño />} />
+          <Route path="/disenoL" element={<LoginDiseño onAuthentication={handleAuthentication}/>} />
+          <Route path="/disenoS"  element={<SignUpDiseño onAuthentication={handleAuthentication}/>} />
           <Route path="/clases" element={<Clase name='Mate'/>} />
 
           {/* rutas de reales usuario no autentificado */}
