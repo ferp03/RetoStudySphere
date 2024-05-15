@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './SignUp';
 import Login from './Login';
-import MainPage from './MainPage';
-import LoginDiseño from './LoginDiseño';
+import MainPage from './Pages/MainPage';
+import LoginDiseño from './Pages/LoginDiseño';
+import SignUpDiseño from './Pages/SignUpDiseño';
 import Clase from './Components/Clase';
 
 
@@ -25,7 +26,8 @@ function App() {
         ) : (
           <>
           {/* rutas de prueba */}
-          <Route path="/diseno" element={<LoginDiseño/>} />
+          <Route path="/disenoL" element={<LoginDiseño/>} />
+          <Route path="/disenoS"  element={<SignUpDiseño />} />
           <Route path="/clases" element={<Clase name='Mate'/>} />
 
           {/* rutas de reales usuario no autentificado */}
