@@ -1,0 +1,90 @@
+html{
+    height: 100vh;
+    width: 100vw;
+}
+
+body{
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
+}
+    
+.backgroundImage{
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    background: radial-gradient(circle, #f2ecec 0%, #ebeaea 100%);
+}
+.LoginContainer{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.LogoContainer{
+    width: 50vw;
+    height: 100vh;
+}
+
+.AlignLogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.FormsContainer{
+    width: 50vw;
+    height: 80vh;
+    padding: 0 20px;
+}
+
+.ovalInput {
+    width: 100%; /* Ajusta según sea necesario */
+    height: 50px; /* Ajusta según sea necesario */
+    border-radius: 25px; /* La mitad de la altura para hacerlo ovalado */
+    border: 2px solid black; /* Borde blanco */
+    background: transparent; /* Relleno transparente */
+    padding: 0 15px; /* Añade un poco de padding a los lados para el texto */
+    outline: none; /* Elimina el resaltado al enfocar el input */
+    color: black; /* Color de texto blanco para mejor visibilidad */
+    margin-top: 5px;
+}
+
+.LoginButtonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginLinesContainer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.LoginLines{
+    height: 0px;
+    width: 30%;
+    border: 1px solid black;
+}
+
+.LoginGoogleButtonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginRegistrateContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
