@@ -1,15 +1,22 @@
+import React from 'react';
 import './LoginDiseño.css';
+
 const LoginDiseño = () => {
 return(
-        <div className='backgroundContainer'>
+    <div className='backgroundContainer'>
             <div className='LoginContainer'>
                 <div className='FormsContainer'>
                     <h2 style={{margin: 0}}>¡Bienvenido!</h2>
                     <h5 style={{margin: 0}}>Ingresa tus credenciales para ingresar</h5>
-
-                        <h3 style={{marginBottom: 0, marginTop: 30}}>Correo electrónico</h3>
+                    <div className='titleIconContainer'>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Correo electrónico</h3>
+                        <i className="fa-solid fa-envelope" style={{marginBottom: 6}}></i>
+                    </div>
                         <input className='ovalInput'/>
-                        <h3 style={{marginBottom: 0, marginTop: 30}}>Contraseña</h3>
+                    <div className='titleIconContainer'>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Contraseña</h3>
+                        <i className="fa-solid fa-lock" style={{marginBottom: 6}}></i>
+                    </div>
                         <input className='ovalInput'/>
                     
 

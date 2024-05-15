@@ -50,6 +50,12 @@ body{
     margin-right: 30px;
 }
 
+.titleIconContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
 .ovalInput {
     width: 100%; /* Ajusta según sea necesario */
     height: 50px; /* Ajusta según sea necesario */
