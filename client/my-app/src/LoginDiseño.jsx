@@ -1,7 +1,7 @@
 import './LoginDiseño.css';
 const LoginDiseño = () => {
 return(
-        <div className="backgroundImage">
+        <div className='backgroundContainer'>
             <div className='LoginContainer'>
                 <div className='FormsContainer'>
                     <h2 style={{margin: 0}}>¡Bienvenido!</h2>
@@ -32,8 +32,8 @@ return(
                             <div className='LoginLines'/>
                         </div>
                         <div className='LoginGoogleButtonContainer'>
-                            <button type="button" class="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
-                                <i class="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
+                            <button type="button" className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
+                                <i className="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
                                 Google
                             </button>
                         </div>

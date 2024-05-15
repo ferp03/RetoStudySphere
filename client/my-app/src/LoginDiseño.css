@@ -5,19 +5,24 @@ html{
 
 body{
     margin: 0px;
-    height: 100vh;
-    width: 100vw;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    background-image: url('/public/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#root{
+    height: 100%;
 }
     
-.backgroundImage{
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
-    color: black;
+.backgroundContainer{
     display: flex;
     flex-direction: row;
-    background: radial-gradient(circle, #f2ecec 0%, #ebeaea 100%);
 }
+
 .LoginContainer{
     width: 50vw;
     height: 100vh;
@@ -41,6 +46,8 @@ body{
     width: 50vw;
     height: 80vh;
     padding: 0 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .ovalInput {
