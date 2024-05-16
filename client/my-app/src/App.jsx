@@ -33,6 +33,7 @@ function App() {
           {/* rutas de reales usuario no autentificado */}
             <Route path="/" element={<Login onAuthentication={handleAuthentication}/> } />
             <Route path="/signup" element={<SignUp onAuthentication={handleAuthentication} />} />
+            <Route path="/auth/google/mainpage" element={<MainPage />} />
           </>
         )}
       </Routes>

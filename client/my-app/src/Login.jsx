@@ -28,6 +28,10 @@ const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop
     navigate('/signup');
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:8000/auth/google";
+  };
+
   return (
     <div className="login-form">
       <h2>Inicio de sesión</h2>
@@ -47,7 +51,7 @@ const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop
         <button type="submit">Iniciar sesión</button>
       </form>
       <div className="social-buttons">
-        <button className="google-button">
+        <button className="google-button" onClick={handleGoogleLogin}>
           <i className="fab fa-google" style={{paddingRight: '10px'}}></i> {/* Icono de Google */}
           Continuar con Google
         </button>

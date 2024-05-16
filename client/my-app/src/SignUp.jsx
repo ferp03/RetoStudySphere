@@ -33,6 +33,10 @@ const SignUp = ({ onAuthentication }) => {
     }
   };
 
+  const handleGoogleSignUp = () => {
+    window.location.href = 'http://localhost:8000/auth/google';
+  };
+
   const handleLoginClick = () =>{
     navigate('/');
   };
@@ -72,7 +76,7 @@ const SignUp = ({ onAuthentication }) => {
       </form>
       <p>or continue with</p>
       <div className="social-buttons">
-        <button className="google-button">
+        <button onClick={handleGoogleSignUp} className="google-button">
           <i className="fab fa-google" style={{paddingRight: '10px'}}></i> {/* Icono de Google */}
           Sign in with Google
         </button>

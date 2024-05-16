@@ -35,7 +35,11 @@ const SignUpDiseño = ({ onAuthentication }) => {
       const handleLoginClick = () =>{
         navigate('/disenoL');
       };
-
+    
+      const handleGoogleSignUp = () => {
+        window.location.href = 'http://localhost:8000/auth/google';
+      };
+      
       const handleSignUpClick = () => {
         navigate('/');
       };
@@ -111,7 +115,7 @@ return (
                         </div>
                 {/* Botón de Google  */}
                         <div className='LoginGoogleButtonContainer'>
-                            <button type="button" className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
+                            <button type="button" onClick={handleGoogleSignUp} className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
                                 <i className="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
                                 Google
                             </button>
