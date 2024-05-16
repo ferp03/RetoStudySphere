@@ -33,7 +33,7 @@ const SignUpDiseño = ({ onAuthentication }) => {
       };
     
       const handleLoginClick = () =>{
-        navigate('/disenoL');
+        navigate('/');
       };
     
       const handleGoogleSignUp = () => {
@@ -41,7 +41,7 @@ const SignUpDiseño = ({ onAuthentication }) => {
       };
       
       const handleSignUpClick = () => {
-        navigate('/');
+        navigate('/mainpage');
       };
     
 

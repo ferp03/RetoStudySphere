@@ -26,11 +26,11 @@ const LoginDiseño = ({ onAuthentication }) => {
       };
 
       const handleSignUpClick = () => {
-        navigate('/disenoS');
+        navigate('/signup');
       };
 
       const handleLoginClick = () =>{
-        navigate('/');
+        navigate('/mainpage');
       };
 
       const handleGoogleLogin = () => {

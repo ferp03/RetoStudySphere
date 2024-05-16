@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from './SignUp';
-import Login from './Login';
 import MainPage from './Pages/MainPage';
 import LoginDiseño from './Pages/LoginDiseño';
 import SignUpDiseño from './Pages/SignUpDiseño';
@@ -21,18 +19,16 @@ function App() {
         {isAuthenticated ? ( //usuario ya autentificado
         <>
           {/* rutas reales usuario autentificado */}
-          <Route path="/" element={<MainPage />} />
+          <Route path="/mainpage" element={<MainPage />} />
         </>
         ) : (
           <>
           {/* rutas de prueba */}
-          <Route path="/disenoL" element={<LoginDiseño onAuthentication={handleAuthentication}/>} />
-          <Route path="/disenoS"  element={<SignUpDiseño onAuthentication={handleAuthentication}/>} />
           <Route path="/clases" element={<Clase name='Mate'/>} />
 
           {/* rutas de reales usuario no autentificado */}
-            <Route path="/" element={<Login onAuthentication={handleAuthentication}/> } />
-            <Route path="/signup" element={<SignUp onAuthentication={handleAuthentication} />} />
+            <Route path="/" element={<LoginDiseño onAuthentication={handleAuthentication}/> } />
+            <Route path="/signup" element={<SignUpDiseño onAuthentication={handleAuthentication} />} />
             <Route path="/auth/google/mainpage" element={<MainPage />} />
           </>
         )}
