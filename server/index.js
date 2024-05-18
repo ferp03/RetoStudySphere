@@ -13,8 +13,8 @@ const saltRounds = 10;
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "RETO",
-  password: "Fpg081203",
+  database: "secrets",
+  password: "maple",
   port: 5432,
 });
 
