@@ -6,7 +6,7 @@ const ClassBox = ({ subject, tasks}) => {
     <div className="class-box">
       <div className="class-header">
         <div className="class-icon">
-          <img src="" />
+          <img src="" alt=""/>
         </div>
         <h3 className="class-subject">{subject}</h3>
       </div>
