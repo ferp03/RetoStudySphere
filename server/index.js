@@ -6,17 +6,13 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
+import { dbCredentials } from "./config.js";
+
 
 const app = express();
 const port = 8000;
 const saltRounds = 10;
-const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "secrets",
-  password: "maple",
-  port: 5432,
-});
+const db = new pg.Client(dbCredentials);
 
 const CLIENT_ID = "120763213730-p0qvtnteh64pb38qmf56381hh46utne8.apps.googleusercontent.com";
 const CLIENT_SECRET = "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";
@@ -51,17 +47,22 @@ app.post("/signup", async (req, res) => {
       res.status(400).json({ error: "Email already exists. Try logging in." });
     } else {
       const hash = await bcrypt.hash(password, saltRounds);
-      let tipoUsuario = isTeacher ? 'maestro' : 'alumno';
-      const result = await db.query(
-        "INSERT INTO Usuario (nombre, correo, contraseña, tipoUsuario) VALUES ($1, $2, $3, $4) RETURNING usuarioId",
-        [name, email, hash, tipoUsuario]
-      );
-      console.log(result.rows[0].usuarioId);
       if (isTeacher) {
-        await db.query("INSERT INTO Maestro (usuarioId) VALUES ($1)", [result.rows[0].usuarioId]);
+        console.log("Inserting maestro");
+        let _newMaestroId;
+        const result = await db.query(
+          "CALL insert_maestro($1, $2, $3, $4)",
+          [name, email, hash, _newMaestroId]
+        );
       } else {
-        await db.query("INSERT INTO Alumno (usuarioId) VALUES ($1)", [result.rows[0].usuarioId]);
+        console.log("Inserting alumno");
+        let _newAlumnoId;
+        await db.query(
+          "CALL insert_alumno($1, $2, $3, $4)",
+          [name, email, hash, _newAlumnoId]
+        );
       }
+      console.log("User registered successfully.");
       res.status(201).json({ message: "User registered successfully.", authenticated: true });
     }
   } catch (err) {

@@ -11,6 +11,9 @@
 # production
 /build
 
+#credenciales db
+/creds.js
+
 # misc
 .DS_Store
 .env.local
