@@ -29,7 +29,7 @@ const MainPage = () => {
 
     fetchUserInfo();
   }, []);
-
+  // No borrar
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -38,67 +38,52 @@ const MainPage = () => {
     return <div> {userInfo} </div>;
   }
   
-  return (
-    <div>
-      <h1>Welcome, {userInfo.info.nombre}</h1>
-      {userInfo.tipoUsuario === 'maestro' ? (
-        <div>
-          <h2>Maestro Details</h2>
-          <pre>{JSON.stringify(userInfo, null, 2)}</pre>
-        </div>
-      ) : (
-        <div>
-          <h2>Alumno Details</h2>
-          <pre>{JSON.stringify(userInfo, null, 2)}</pre>
-        </div>
-      )}
-    </div>
-  );
 
-  // const classes = [
-  //   {
-  //     subject: 'Math',
-  //     tasks: ['Math Quiz', 'Homework', 'Study']
-  //   },
-  //   {
-  //     subject: 'Chemistry',
-  //     tasks: ['Chemistry Quiz', 'Homework', 'Study']
-  //   },
-  //   {
-  //     subject: 'History',
-  //     tasks: ['History Quiz', 'Homework', 'Exam']
-  //   },
-  //   {
-  //     subject: 'English',
-  //     tasks: ['English Quiz', 'Homework', 'Study']
-  //   },
-  //   {
-  //     subject: 'Biology',
-  //     tasks: ['Biology Quiz', 'Homework', 'Study']
-  //   },
-  //   {
-  //     subject: 'Geography',
-  //     tasks: ['Geography Quiz', 'Homework', 'Study']
-  //   },
-  // ];
+  // Tomar el json completo y asignar el apartado de clases a userClases
+  let userClases  = userInfo.clases;
 
   // return (
-  //   <div className="main-container">
-  //     <NavBar />
-  //     <div className="content">
-  //       <Header />
-  //       <div className="class-boxes-container">
-  //         {classes.map((classData, index) => (
-  //           <ClassBox
-  //             key={index}
-  //             subject={classData.subject}
-  //             tasks={classData.tasks}
-  //           />
-  //         ))}
+  //   <div>
+  //     <h1>Welcome, {userInfo.info.nombre}</h1>
+  //     {userInfo.tipoUsuario === 'maestro' ? (
+  //       <div>
+  //         <h2>Maestro Details</h2>
+  //         <pre>{JSON.stringify(userInfo, null, 2)}</pre>
   //       </div>
-  //     </div>
+  //     ) : (
+  //       <div>
+  //         <h2>Alumno Details</h2>
+  //         <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+  //       </div>
+  //     )}
+  //     <div>
+  //     <h2>Classes</h2>
+  //     {userClases.map((clase, index) => (
+  //       <div key={index}>
+  //         <h3>{clase.nombreclase}</h3>
+  //       </div>
+  //     ))}
+  //   </div>
   //   </div>
   // );
+  
+  return (
+    <div className="main-container">
+      <NavBar />
+      <div className="content">
+        <Header userInfo={userInfo}/>
+        <div className="class-boxes-container">
+          {userClases.map((clase, index) => (
+            <ClassBox
+              key={index}
+              subject={clase.nombreclase}
+              tasks={[]} // Ver manera de poder editar el apartado de tasks
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default MainPage;
