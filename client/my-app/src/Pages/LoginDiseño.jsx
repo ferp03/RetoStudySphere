@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './LoginDiseño.css';
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from '../axiosInstance';
 
 const LoginDiseño = ({ onAuthentication }) => {
     const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const LoginDiseño = ({ onAuthentication }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post("http://localhost:8000/login", {
+          const response = await axiosInstance.post("http://localhost:8000/login", {
             email,
             password,
           });
@@ -106,9 +107,6 @@ return(
                     <img src='logoTitle.png' alt='Nombre' style={{width: '80%'}}/>
                 </div>
             </div>
-
-
-
         </div>
     );
 }
