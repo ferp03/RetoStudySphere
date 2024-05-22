@@ -40,7 +40,7 @@ const MainPage = () => {
   
   return (
     <div>
-      <h1>Welcome, {userInfo.maestro.nombre}</h1>
+      <h1>Welcome, {userInfo.info.nombre}</h1>
       {userInfo.tipoUsuario === 'maestro' ? (
         <div>
           <h2>Maestro Details</h2>
