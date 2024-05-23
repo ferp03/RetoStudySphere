@@ -42,48 +42,43 @@ const MainPage = () => {
   // Tomar el json completo y asignar el apartado de clases a userClases
   let userClases  = userInfo.clases;
 
-  // return (
-  //   <div>
-  //     <h1>Welcome, {userInfo.info.nombre}</h1>
-  //     {userInfo.tipoUsuario === 'maestro' ? (
-  //       <div>
-  //         <h2>Maestro Details</h2>
-  //         <pre>{JSON.stringify(userInfo, null, 2)}</pre>
-  //       </div>
-  //     ) : (
-  //       <div>
-  //         <h2>Alumno Details</h2>
-  //         <pre>{JSON.stringify(userInfo, null, 2)}</pre>
-  //       </div>
-  //     )}
-  //     <div>
-  //     <h2>Classes</h2>
-  //     {userClases.map((clase, index) => (
-  //       <div key={index}>
-  //         <h3>{clase.nombreclase}</h3>
-  //       </div>
-  //     ))}
-  //   </div>
-  //   </div>
-  // );
-  
-  return (
-    <div className="main-container">
-      <NavBar />
-      <div className="content">
-        <Header userInfo={userInfo}/>
-        <div className="class-boxes-container">
-          {userClases.map((clase, index) => (
-            <ClassBox
-              key={index}
-              subject={clase.nombreclase}
-              tasks={[]} // Ver manera de poder editar el apartado de tasks
-            />
-          ))}
+  const NoClases = () => {
+    return(
+      <div className='main-container'>
+        <NavBar />
+        <div className='content'>
+          <Header userInfo={userInfo} />
+          <div>
+            <p>No tienes clases registradas, habla con tu maestro para que te enrole en la clase que buscas</p>
+          </div>
         </div>
       </div>
+    );
+  } 
+
+  return (
+    <div>
+      {userClases ? (
+        <div className="main-container">
+          <NavBar />
+          <div className="content">
+            <Header userInfo={userInfo}/>
+            <div className="class-boxes-container">
+              {userClases.map((clase, index) => (
+                <ClassBox
+                  key={index}
+                  subject={clase.nombreclase}
+                  tasks={[]} // Ver manera de poder editar el apartado de tasks
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <NoClases />
+      )}
     </div>
-  );
+  )
 };
 
 export default MainPage;
