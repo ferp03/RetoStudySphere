@@ -39,7 +39,8 @@ app.use(
 );
 
 // app.use((req, res, next) => {
-//   console.log('Cookies: ', req.cookies);
+//   console.log('Cookies: ', req.cookies); 
+//   console.log('session: ', req.session);
 //   next();
 // });
 
@@ -47,6 +48,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
+
+app.get("/checkSession", (req, res) =>{
+  console.log('checando sesion...');
+  if(req.session.userId){
+    console.log('auth true');
+    res.status(200).json({ authenticated: true });
+  }else{
+    console.log('auth false');
+    res.status(200).json({ authenticated: false });
+  }
+});
 
 // Ruta para registrar un nuevo usuario
 app.post("/signup", async (req, res) => {
@@ -66,6 +78,11 @@ app.post("/signup", async (req, res) => {
           "CALL insert_maestro($1, $2, $3, $4)",
           [name, email, hash, _newMaestroId]
         );
+        const queryId = await db.query("SELECT * FROM Usuario WHERE correo = $1", [email]);
+        const userId = queryId.rows[0].usuarioid;
+        req.session.userId = userId;
+        req.session.userType = 'maestro';
+
       } else {
         console.log("Inserting alumno");
         let _newAlumnoId;
@@ -73,6 +90,11 @@ app.post("/signup", async (req, res) => {
           "CALL insert_alumno($1, $2, $3, $4)",
           [name, email, hash, _newAlumnoId]
         );
+        const queryId = await db.query("SELECT * FROM Usuario WHERE correo = $1", [email]);
+        const userId = queryId.rows[0].usuarioid;
+        req.session.userId = userId;
+        req.session.userType = 'alumno';
+
       }
       console.log("User registered successfully.");
       res.status(201).json({ message: "User registered successfully.", authenticated: true });
@@ -110,6 +132,16 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: "An error occurred while processing your request." });
   }
 });
+
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) =>{
+    if(err){
+      return res.status(500).json({ error: 'No se pudo hacer log out' });
+    }
+    res.clearCookie('connect.sid');
+    res.status(200).json({ message: 'Log out correctamente'});
+  })
+})
 
 // Ruta para obtener la información de un usuario
 app.post("/getUserInfo", async (req, res) => {
