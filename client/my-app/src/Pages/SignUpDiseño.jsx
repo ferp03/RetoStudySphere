@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './LoginDiseño.css';
-import axios from "axios";
+import axiosInstance from '../axiosInstance';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../AuthContext';
 
-const SignUpDiseño = ({ onAuthentication }) => {
+const SignUpDiseño = () => {
+    const { setIsAuthenticated } = useContext(AuthContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,8 +15,7 @@ const SignUpDiseño = ({ onAuthentication }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post(
-            'http://localhost:8000/signup',
+          const response = await axiosInstance.post('/signup',
             { name, email, password, isTeacher },
             {
               headers: {
@@ -24,7 +25,7 @@ const SignUpDiseño = ({ onAuthentication }) => {
           );
           console.log(response.data);
           if (response.data.authenticated) {
-            onAuthentication();
+            setIsAuthenticated(true);
             handleSignUpClick();
           }
         } catch (error) {

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './LoginDiseño.css';
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../axiosInstance';
+import { AuthContext } from '../AuthContext';
 
-const LoginDiseño = ({ onAuthentication }) => {
+const LoginDiseño = () => {
+    const { setIsAuthenticated } = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -12,13 +14,13 @@ const LoginDiseño = ({ onAuthentication }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axiosInstance.post("http://localhost:8000/login", {
+          const response = await axiosInstance.post("/login", {
             email,
             password,
           });
           console.log(response.data);
           if (response.data.authenticated) {
-            onAuthentication();
+            setIsAuthenticated(true);
             handleLoginClick();
           }
         } catch (error) {
