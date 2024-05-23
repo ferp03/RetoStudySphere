@@ -140,6 +140,7 @@ app.post('/logout', (req, res) => {
     }
     res.clearCookie('connect.sid');
     res.status(200).json({ message: 'Log out correctamente'});
+    console.log("logout correcto");
   })
 })
 
