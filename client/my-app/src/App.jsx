@@ -1,53 +1,50 @@
-import React, { useState } from 'react';
-import SignUp from './SignUp';
-import Login from './Login';
-import MainPage from './MainPage';
-import './styles.css';
-//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import React, { useState, useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext, AuthProvider } from './AuthContext';
+import MainPage from './Pages/MainPage';
+import LoginDiseño from './Pages/LoginDiseño';
+import SignUpDiseño from './Pages/SignUpDiseño';
+import './Pages/MainPage.css';
 
 function App() {
-  const [isSignUp, setIsSignUp] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const togglePage = () => {
-    setIsSignUp(!isSignUp);
-  };
 
   const handleAuthentication = () => {
     setIsAuthenticated(true);
+
   };
 
-  const handlePageToggle = () => {
-    setIsSignUp(false);
+  const AuthRoutes = () => {
+    const { isAuthenticated } = useContext(AuthContext);
+
+    return(
+      <Routes>
+      {isAuthenticated ? (
+        <>
+          {/* Rutas para usuario autenticado */}
+          <Route path="/mainpage" element={<MainPage />} />
+          {/* Añadir otras rutas autenticadas aquí */}
+        </>
+      ) : (
+        <>
+          {/* Rutas para usuario no autenticado */}
+          <Route path="/" element={<LoginDiseño />} />
+          <Route path="/signup" element={<SignUpDiseño />} />
+          <Route path="/auth/google/mainpage" element={<MainPage />} />
+        </>
+      )}
+    </Routes>
+    );
   };
 
   return (
-    <div>
-      {isAuthenticated ? (
-        <MainPage />
-      ) : isSignUp ? (
-        <SignUp
-          onAuthentication={handleAuthentication}
-          togglePage={togglePage}
-          handlePageToggle={handlePageToggle}
-        />
-      ) : (
-        <Login
-          onAuthentication={handleAuthentication}
-          togglePage={togglePage} // Pasamos togglePage para cambiar a la página de registro
-        />
-      )}
-      {!isSignUp && (
-        <p>
-          ¿No tienes una cuenta?{' '}
-          <span onClick={togglePage} style={{ cursor: 'pointer', color: 'blue' }}>
-            Sign Up
-          </span>
-        </p>
-      )}
-    </div>
+    <AuthProvider>
+      <Router>
+        <AuthRoutes />
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

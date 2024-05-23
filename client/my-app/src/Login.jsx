@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import './LoginForm.css';
-import '@fortawesome/fontawesome-free/css/all.css';
+import { useNavigate } from "react-router-dom";
 
-
-const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como prop
+const Login = ({ onAuthentication }) => { // Pasamos togglePage como prop
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +22,14 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:8000/auth/google";
   };
 
   return (
@@ -43,14 +51,14 @@ const Login = ({ onAuthentication, togglePage }) => { // Pasamos togglePage como
         <button type="submit">Iniciar sesión</button>
       </form>
       <div className="social-buttons">
-        <button className="google-button">
-          <i className="fab fa-google"></i> {/* Icono de Google */}
+        <button className="google-button" onClick={handleGoogleLogin}>
+          <i className="fab fa-google" style={{paddingRight: '10px'}}></i> {/* Icono de Google */}
           Continuar con Google
         </button>
       </div>
       <p>
         ¿No tienes una cuenta?{' '}
-        <span onClick={togglePage} style={{ cursor: 'pointer', color: 'blue' }}>
+        <span onClick={handleSignUpClick} style={{ cursor: 'pointer', color: 'blue' }}>
           Sign Up
         </span>
       </p>
