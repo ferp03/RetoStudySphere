@@ -13,6 +13,7 @@ import { dbCredentials } from "./creds.js";
 const app = express();
 const port = 8000;
 const saltRounds = 10;
+
 const db = new pg.Client(dbCredentials);
 
 const CLIENT_ID = "120763213730-p0qvtnteh64pb38qmf56381hh46utne8.apps.googleusercontent.com";
