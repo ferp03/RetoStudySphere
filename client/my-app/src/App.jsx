@@ -5,6 +5,7 @@ import { AuthContext, AuthProvider } from './AuthContext';
 import MainPage from './Pages/MainPage';
 import LoginDiseño from './Pages/LoginDiseño';
 import SignUpDiseño from './Pages/SignUpDiseño';
+import ChatBot from './Pages/ChatBot';
 import './Pages/MainPage.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <>
           {/* Rutas para usuario autenticado */}
           <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/chatbot" element={<ChatBot />} />
           {/* Añadir otras rutas autenticadas aquí */}
         </>
       ) : (

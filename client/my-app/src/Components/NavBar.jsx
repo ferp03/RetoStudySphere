@@ -5,19 +5,20 @@ import './NavBar.css';
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+
   const handleLogout = () => {
     logout();
     navigate('/');
   }
 
-  const { logout } = useContext(AuthContext);
   return (
     <div className="navbar">
-      <div className="nav-icon"><i className="fa fa-user"></i></div>  
-      <div className="nav-icon"><i className="fa fa-home"></i></div>
-      <div className="nav-icon"><i className="fa fa-calendar"></i></div>
-      <div className="nav-icon"><i className="fa fa-tasks"></i></div>
-      <div className="nav-icon logout" onClick={handleLogout}><i className="fa fa-sign"></i></div>
+      <button className="nav-button" onClick={() => navigate('/')}><i className="fa fa-user"></i> </button>
+      <button className="nav-button" onClick={() => navigate('/mainpage')}><i className="fa fa-home"></i> </button>
+      <button className="nav-button" onClick={() => navigate('/')}><i className="fa fa-calendar"></i> </button>
+      <button className="nav-button" onClick={() => navigate('/chatbot')}><i className="fa fa-tasks"></i> </button>
+      <button className="nav-button logout" onClick={handleLogout}><i className="fa fa-sign"></i> </button>
     </div>
   );
 };

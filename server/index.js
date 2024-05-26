@@ -8,7 +8,8 @@ import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
 import { dbCredentials } from "./creds.js";
-
+import { handleChatRequest } from "./chatbot.js";
+import { config } from 'dotenv';
 
 const app = express();
 const port = 8000;
@@ -16,8 +17,11 @@ const saltRounds = 10;
 
 const db = new pg.Client(dbCredentials);
 
-const CLIENT_ID = "120763213730-p0qvtnteh64pb38qmf56381hh46utne8.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
+config();
+
+
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 db.connect();
 
@@ -49,6 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
+app.post("/chat", handleChatRequest);
 
 app.get("/checkSession", (req, res) =>{
   console.log('checando sesion...');
