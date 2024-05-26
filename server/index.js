@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import pgSession from 'connect-pg-simple';
+import connectPgSimple from 'connect-pg-simple';
 import bcrypt from "bcrypt";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -38,6 +38,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
+
+const pgSession = connectPgSimple(session);
 
 app.use(
   session({
