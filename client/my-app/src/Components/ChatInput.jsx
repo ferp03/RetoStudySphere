@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ChatInput.css'; 
 
 const ChatInput = ({ onSendMessage }) => {
   const [input, setInput] = useState('');
@@ -10,12 +11,20 @@ const ChatInput = ({ onSendMessage }) => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { 
+      e.preventDefault(); 
+      handleSend(); 
+    }
+  };
+
   return (
     <div className="chat-input">
       <textarea 
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Mande mensaje..."
+        onKeyDown={handleKeyPress} 
+        placeholder="Message..."
       ></textarea>
       <button onClick={handleSend}>Enviar</button>
     </div>

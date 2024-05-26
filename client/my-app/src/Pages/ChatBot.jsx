@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import ChatInput from '../Components/ChatInput';
 import ChatMessage from '../Components/ChatMessage';
 import NavBar from '../Components/NavBar';
+import Botones from '../Components/BotonesChatBot';
+import Logo from '../Components/Logo';
 import './ChatBot.css';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([
     { text: '¡Hola! ¿En qué puedo ayudarte?', sender: 'bot' }
   ]);
+  const [showButtons, setShowButtons] = useState(true);
 
   const handleSendMessage = async (message) => {
+    setShowButtons(false);
     setMessages([...messages, { text: message, sender: 'user' }]);
 
     try {
@@ -25,27 +29,37 @@ const ChatBot = () => {
     }
   };
 
+  const handleButtonClick = () => {
+    setShowButtons(false);
+  };
+
   useEffect(() => {
     const chatBox = document.querySelector('.chatbox');
     chatBox.scrollTop = chatBox.scrollHeight;
   }, [messages]);
 
   return (
-    <div className="chatbot-container">
+    <>
       <NavBar />
-      <div className="chatbot">
-        <header>
-          <h2>Asesor Financiero</h2>
-        </header>
-        <ul className="chatbox">
-          {messages.map((msg, index) => (
-            <ChatMessage key={index} message={msg} />
-          ))}
-        </ul>
-        <ChatInput onSendMessage={handleSendMessage} />
+      <div className="chatbot-container">
+        <div className="chatbot">
+          <header>
+            <Logo />
+            <h2>TutorAI</h2>
+          </header>
+          {showButtons && <Botones onButtonClick={handleButtonClick} />}
+          <ul className="chatbox">
+            {messages.map((msg, index) => (
+              <ChatMessage key={index} message={msg} />
+            ))}
+          </ul>
+          <ChatInput onSendMessage={handleSendMessage} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default ChatBot;
+
+

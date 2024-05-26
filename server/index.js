@@ -1,23 +1,28 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import connectPgSimple from 'connect-pg-simple';
 import bcrypt from "bcrypt";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
-import { dbCredentials } from "./creds.js";
 import { handleChatRequest } from "./chatbot.js";
 import { config } from 'dotenv';
 
+config();
 const app = express();
 const port = 8000;
 const saltRounds = 10;
 
-const db = new pg.Client(dbCredentials);
+const { Pool } = pg;
 
-config();
+
+const db = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+})
+
 
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -34,12 +39,18 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(cookieParser());
 
+const pgSession = connectPgSimple(session);
+
 app.use(
   session({
+    store: new pgSession({
+      pool: db, // Connection pool
+      tableName: 'session' // Use another table-name than the default "session" one
+    }),
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: false,
-    cookie: {secure: false}
+    cookie: { secure: false }
   })
 );
 
@@ -202,6 +213,9 @@ app.post("/getUserInfo", async (req, res) => {
   
 */
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the API!");
+});
 
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
