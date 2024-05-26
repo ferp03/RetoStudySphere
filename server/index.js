@@ -18,17 +18,16 @@ const saltRounds = 10;
 
 const { Pool } = pg;
 
-
 const db = new Pool({
   connectionString: process.env.POSTGRES_URL,
-})
-
-
+});
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
-db.connect();
+db.connect().catch(err => {
+  console.error('Error connecting to the database:', err);
+});
 
 app.use(cors({
   origin: "http://localhost:3000",
@@ -41,6 +40,12 @@ app.use(cookieParser());
 
 const pgSession = connectPgSimple(session);
 
+// app.use((req, res, next) => {
+//   console.log('Cookies: ', req.cookies); 
+//   console.log('session: ', req.session);
+//   next();
+// });
+
 app.use(
   session({
     store: new pgSession({
@@ -50,15 +55,13 @@ app.use(
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true, httpOnly: true, sameSite: 'lax' }
+    cookie: { 
+      secure: process.env.NODE_ENV === 'production',  // Use secure cookies in production
+      httpOnly: true, 
+      sameSite: 'lax'
+    }
   })
 );
-
-// app.use((req, res, next) => {
-//   console.log('Cookies: ', req.cookies); 
-//   console.log('session: ', req.session);
-//   next();
-// });
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -66,22 +69,20 @@ app.use(passport.session());
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
 app.post("/chat", handleChatRequest);
 
-app.get("/checkSession", (req, res) =>{
-  console.log('checando sesion...');
-  if(req.session.userId){
-    console.log('auth true');
+app.get("/checkSession", (req, res) => {
+  console.log('Checking session...');
+  if (req.session.userId) {
+    console.log('Auth true');
     res.status(200).json({ authenticated: true });
-  }else{
-    console.log('auth false');
+  } else {
+    console.log('Auth false');
     res.status(200).json({ authenticated: false });
   }
 });
 
-// Ruta para registrar un nuevo usuario
 app.post("/signup", async (req, res) => {
   console.log("Sign Up in process");
   const { name, email, password, isTeacher } = req.body;
-  console.log(email);
   try {
     const checkResult = await db.query("SELECT * FROM Usuario WHERE correo = $1", [email]);
     if (checkResult.rows.length > 0) {
@@ -99,7 +100,6 @@ app.post("/signup", async (req, res) => {
         const userId = queryId.rows[0].usuarioid;
         req.session.userId = userId;
         req.session.userType = 'maestro';
-
       } else {
         console.log("Inserting alumno");
         let _newAlumnoId;
@@ -111,7 +111,6 @@ app.post("/signup", async (req, res) => {
         const userId = queryId.rows[0].usuarioid;
         req.session.userId = userId;
         req.session.userType = 'alumno';
-
       }
       console.log("User registered successfully.");
       res.status(201).json({ message: "User registered successfully.", authenticated: true });
@@ -122,7 +121,6 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// Ruta para iniciar sesión
 app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -135,10 +133,10 @@ app.post("/login", async (req, res) => {
       const hashedPassword = checkResult.rows[0].contraseña;
       const isPasswordValid = await bcrypt.compare(password, hashedPassword);
       if (isPasswordValid) {
-        const userId = checkResult.rows[0].usuarioid;  // Obtener el ID del usuario
-        const userType = checkResult.rows[0].tipousuario; // Obtener el tipo de usuario
-        req.session.userId = userId;  // Almacenar el ID en la sesión
-        req.session.userType = userType;  // Almacenar el tipo de usuario en la sesión
+        const userId = checkResult.rows[0].usuarioid;
+        const userType = checkResult.rows[0].tipousuario;
+        req.session.userId = userId;
+        req.session.userType = userType;
         res.status(200).json({ message: "Login successful", authenticated: true });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
@@ -151,20 +149,19 @@ app.post("/login", async (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-  req.session.destroy((err) =>{
-    if(err){
+  req.session.destroy((err) => {
+    if (err) {
       return res.status(500).json({ error: 'No se pudo hacer log out' });
     }
     res.clearCookie('connect.sid');
-    res.status(200).json({ message: 'Log out correctamente'});
-    console.log("logout correcto");
-  })
-})
+    res.status(200).json({ message: 'Log out correctly' });
+    console.log("logout correctly");
+  });
+});
 
-// Ruta para obtener la información de un usuario
 app.get("/getUserInfo", async (req, res) => {
-  const userId = req.session.userId;  // Obtener el ID del usuario de la sesión
-  const userType = req.session.userType;  // Obtener el tipo de usuario de la sesión
+  const userId = req.session.userId;
+  const userType = req.session.userType;
 
   if (!userId || !userType) {
     return res.status(401).json({ error: "User not logged in" });
@@ -186,32 +183,6 @@ app.get("/getUserInfo", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving user information." });
   }
 });
-
-/* 
-  snippet para obtener las clases de un usuario con su user id
-
-    let userInfo;
-    if (userType === 'maestro') {
-      const result = await db.query("CALL clases_maestro($1, $2)", [userId, userInfo]);
-      userInfo = result.rows[0]._clasesmaestro;
-    } else if (userType === 'alumno') {
-      const result = await db.query("CALL clases_alumno($1, $2)", [userId, userInfo]);
-      userInfo = result.rows[0]._clasesalumno;
-    }
-
-  snippet para obtener la información de un maestro con su user id
-
-    let userInfo;
-    if (userType === 'maestro') {
-      const result = await db.query("CALL detalle_maestro($1, $2)", [userId, userInfo]);
-      userInfo = result.rows[0]._detallemaestro;
-    } else if (userType === 'alumno') {
-      const result = await db.query("CALL detalle_alumno($1, $2)", [userId, userInfo]);
-      userInfo = result.rows[0]._detallealumno;
-    }
-
-  
-*/
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");
