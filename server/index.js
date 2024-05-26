@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import pgSession from 'connect-pg-simple';
 import bcrypt from "bcrypt";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -15,16 +16,12 @@ const app = express();
 const port = 8000;
 const saltRounds = 10;
 
-const dbCredentials = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-};
+const { Pool } = pg;
 
 
-const db = new pg.Client(dbCredentials);
+const db = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+})
 
 
 
@@ -44,10 +41,14 @@ app.use(cookieParser());
 
 app.use(
   session({
+    store: new pgSession({
+      pool: db, // Connection pool
+      tableName: 'session' // Use another table-name than the default "session" one
+    }),
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: false,
-    cookie: {secure: false}
+    cookie: { secure: false }
   })
 );
 
