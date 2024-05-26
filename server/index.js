@@ -162,7 +162,7 @@ app.post('/logout', (req, res) => {
 })
 
 // Ruta para obtener la información de un usuario
-app.post("/getUserInfo", async (req, res) => {
+app.get("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;  // Obtener el ID del usuario de la sesión
   const userType = req.session.userType;  // Obtener el tipo de usuario de la sesión
 
