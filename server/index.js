@@ -8,7 +8,7 @@ import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
 import { dbCredentials } from "./creds.js";
-
+import { handleChatRequest } from "./chatbot.js";
 
 const app = express();
 const port = 8000;
@@ -49,6 +49,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
+app.post("/chat", handleChatRequest);
 
 app.get("/checkSession", (req, res) =>{
   console.log('checando sesion...');
