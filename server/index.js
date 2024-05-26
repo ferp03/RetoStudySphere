@@ -7,13 +7,21 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
-import { dbCredentials } from "./creds.js";
 import { handleChatRequest } from "./chatbot.js";
 import { config } from 'dotenv';
 
 const app = express();
 const port = 8000;
 const saltRounds = 10;
+
+const dbCredentials = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+};
+
 
 const db = new pg.Client(dbCredentials);
 
