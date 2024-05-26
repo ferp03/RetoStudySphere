@@ -2,20 +2,16 @@
     "version": 2,
     "builds": [
       {
-        "src": "src/index.js",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "public/*",
-        "use": "@vercel/static"
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "build" }
       }
     ],
     "routes": [
-      { "src": "/api/(.*)", "dest": "/api/index.js" },
-      { "src": "/(.*)", "dest": "/index.html" }
-    ],
-    "env": {
-      "REACT_APP_API_BASE_URL": "https://studysphere-fernandos-projects-88891e4a.vercel.app"
-    }
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
   }
   
