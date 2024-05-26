@@ -10,6 +10,7 @@ import initializeGoogleAuth from "./googleAuth.js";
 import { handleChatRequest } from "./chatbot.js";
 import { config } from 'dotenv';
 
+config();
 const app = express();
 const port = 8000;
 const saltRounds = 10;
@@ -25,7 +26,6 @@ const dbCredentials = {
 
 const db = new pg.Client(dbCredentials);
 
-config();
 
 
 const CLIENT_ID = process.env.CLIENT_ID;
