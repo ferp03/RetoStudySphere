@@ -27,6 +27,7 @@ const SignUpDiseño = () => {
           if (response.data.authenticated) {
             setIsAuthenticated(true);
             handleSignUpClick();
+
           }
         } catch (error) {
           console.error('Error al registrarse:', error);
@@ -38,7 +39,7 @@ const SignUpDiseño = () => {
       };
     
       const handleGoogleSignUp = () => {
-        window.location.href = 'http://localhost:8000/auth/google';
+        window.location.href = axiosInstance.post('/auth/google');
       };
       
       const handleSignUpClick = () => {

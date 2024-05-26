@@ -37,7 +37,8 @@ const LoginDiseño = () => {
       };
 
       const handleGoogleLogin = () => {
-        window.location.href = "http://localhost:8000/auth/google";
+        window.location.href = axiosInstance.post("/auth/google");
+
       };
     
 
