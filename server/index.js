@@ -50,7 +50,7 @@ app.use(
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { secure: true, httpOnly: true, sameSite: 'lax' }
   })
 );
 
