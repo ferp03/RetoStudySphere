@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
+import { config } from 'dotenv';
+config();
 
-const API_KEY = "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"; // Asegúrate de mantener esto seguro y no exponerlo en el frontend
+const API_KEY = process.env.API_KEY;
 
 export const handleChatRequest = async (req, res) => {
   const userMessage = req.body.message;
