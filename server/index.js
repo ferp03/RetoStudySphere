@@ -30,7 +30,7 @@ db.connect().catch(err => {
 });
 
 app.use(cors({
-  origin: "https://studysphere-fernandos-projects-88891e4a.vercel.app/",
+  origin: "https://studysphere-fernandos-projects-88891e4a.vercel.app",
   credentials: true
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
