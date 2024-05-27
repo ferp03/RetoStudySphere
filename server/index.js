@@ -48,6 +48,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(
   session({
     store: new pgSession({
@@ -65,8 +68,6 @@ app.use(
   })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
 app.post("/chat", handleChatRequest);
