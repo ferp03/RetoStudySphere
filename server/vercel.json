@@ -12,7 +12,8 @@
       "dest": "./index.js",
       "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://studysphere-fernandos-projects-88891e4a.vercel.app"
+        "Access-Control-Allow-Origin": "https://studysphere-fernandos-projects-88891e4a.vercel.app",
+        "Access-Control-Allow-Credentials": "true"
       }
     }
   ]
