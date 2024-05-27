@@ -49,7 +49,7 @@ app.use(
     }),
     secret: "TOPSECRETWORD",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       secure: false,
       httpOnly: true,
