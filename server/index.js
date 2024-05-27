@@ -51,7 +51,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,  // Usa secure: true solo en producción con HTTPS
+      secure: false,  // Usa secure: true solo en producción con HTTPS
       httpOnly: true,
       sameSite: 'none'  // Asegúrate de que las cookies se envían con solicitudes cross-origin
     }
