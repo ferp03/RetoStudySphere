@@ -4,7 +4,6 @@ import pg from "pg";
 import connectPgSimple from 'connect-pg-simple';
 import bcrypt from "bcrypt";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import initializeGoogleAuth from "./googleAuth.js";
@@ -37,7 +36,6 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
-app.use(cookieParser());
 
 const pgSession = connectPgSimple(session);
 
@@ -45,7 +43,7 @@ app.use(
   session({
     store: new pgSession({
       pool: db, // Connection pool
-      tableName: 'sessioncookies' // Use another table-name than the default "session" one
+      tableName: 'sessionCookies' // Use another table-name than the default "session" one
     }),
     secret: "TOPSECRETWORD",
     resave: false,
@@ -62,15 +60,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  console.log('Cookies:', req.cookies); 
   console.log('Session:', req.session);
   console.log("Session id:", req.sessionID);
   next();
 });
 
-
-
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
+
 app.post("/chat", handleChatRequest);
 
 app.get("/checkSession", (req, res) => {
@@ -96,7 +92,7 @@ app.post("/signup", async (req, res) => {
       if (isTeacher) {
         console.log("Inserting maestro");
         let _newMaestroId;
-        const result = await db.query(
+        await db.query(
           "CALL insert_maestro($1, $2, $3, $4)",
           [name, email, hash, _newMaestroId]
         );
@@ -141,14 +137,13 @@ app.post("/login", async (req, res) => {
         const userType = checkResult.rows[0].tipousuario;
         req.session.userId = userId;
         req.session.userType = userType;
-        req.session.save((err) => { // Asegurarse de que la sesión se guarda
+        req.session.save((err) => {
           if (err) {
             console.error('Error saving session:', err);
             return res.status(500).json({ error: "Error saving session" });
-          }else{
+          } else {
             console.log('Login Session:', req.session);
             console.log("Session id", req.sessionID);
-
             return res.status(200).json({ message: "Login successful", authenticated: true });
           }
         });
@@ -176,7 +171,6 @@ app.post('/logout', (req, res) => {
 app.get("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;
   const userType = req.session.userType;
-  console.log('Cookies:', req.cookies);
   console.log('Session:', req.session);
   console.log("Session id", req.sessionID);
   console.log("userId", userId);
