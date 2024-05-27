@@ -56,7 +56,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { 
-      secure: process.env.NODE_ENV === 'production',  // Use secure cookies in production
+      secure: true,  // Use secure cookies in production
       httpOnly: true, 
       sameSite: 'lax'
     }
@@ -162,9 +162,10 @@ app.post('/logout', (req, res) => {
 app.get("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;
   const userType = req.session.userType;
-  console.log('Checking session for getUserInfo...');
   console.log('Cookies:', req.cookies);
   console.log('Session:', req.session);
+  console.log("userId", userId);
+  console.log("userType", userType);
 
   if (!userId || !userType) {
     return res.status(401).json({ error: "User not logged in" });
