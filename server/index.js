@@ -43,15 +43,15 @@ const pgSession = connectPgSimple(session);
 
 app.use(
   session({
+    store: new pgSession({
+      pool: db,
+      tableName: 'sessioncookies' // Asegúrate de que la tabla existe en tu base de datos
+    }),
     secret: "TOPSECRETWORD",
     resave: false,
     saveUninitialized: false,
-    store: new pgSession({
-      pool: db, // Connection pool
-      tableName: 'sessioncookies' // Use another table-name than the default "session" one
-    }),
-    cookie: { 
-      secure: false,  // Use secure cookies in production
+    cookie: {
+      secure: false,
       httpOnly: true,
       sameSite: 'none'
     }
@@ -85,6 +85,7 @@ app.get("/checkSession", (req, res) => {
 app.post("/signup", async (req, res) => {
   console.log("Sign Up in process");
   const { name, email, password, isTeacher } = req.body;
+  console.log(email);
   try {
     const checkResult = await db.query("SELECT * FROM Usuario WHERE correo = $1", [email]);
     if (checkResult.rows.length > 0) {
@@ -139,9 +140,16 @@ app.post("/login", async (req, res) => {
         const userType = checkResult.rows[0].tipousuario;
         req.session.userId = userId;
         req.session.userType = userType;
-        console.log('Login Session:', req.session);
-        console.log("Session id", req.sessionID);
-        res.status(200).json({ message: "Login successful", authenticated: true });
+        req.session.save((err) => {
+          if (err) {
+            console.error('Error saving session:', err);
+            return res.status(500).json({ error: "Error saving session" });
+          } else {
+            console.log('Login Session:', req.session);
+            console.log("Session id", req.sessionID);
+            return res.status(200).json({ message: "Login successful", authenticated: true });
+          }
+        });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
       }
@@ -158,8 +166,8 @@ app.post('/logout', (req, res) => {
       return res.status(500).json({ error: 'No se pudo hacer log out' });
     }
     res.clearCookie('connect.sid');
-    res.status(200).json({ message: 'Log out correctly' });
-    console.log("logout correctly");
+    res.status(200).json({ message: 'Log out correctamente' });
+    console.log("logout correctamente");
   });
 });
 
@@ -167,9 +175,9 @@ app.get("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;
   const userType = req.session.userType;
   console.log('Session:', req.session);
-  console.log("Session id", req.sessionID);
-  console.log("userId", userId);
-  console.log("userType", userType);
+  console.log("Session id:", req.sessionID);
+  console.log("userId:", userId);
+  console.log("userType:", userType);
 
   if (!userId || !userType) {
     console.log("error 401 aqui");
