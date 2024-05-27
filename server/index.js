@@ -45,7 +45,7 @@ app.use(
   session({
     store: new pgSession({
       pool: db, // Connection pool
-      tableName: 'session' // Use another table-name than the default "session" one
+      tableName: 'sessionCookies' // Use another table-name than the default "session" one
     }),
     secret: "TOPSECRETWORD",
     resave: false,
