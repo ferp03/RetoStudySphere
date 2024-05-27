@@ -138,6 +138,8 @@ app.post("/login", async (req, res) => {
         req.session.userId = userId;
         req.session.userType = userType;
         console.log(userId);
+        console.log('Cookies:', req.cookies);
+
         res.status(200).json({ message: "Login successful", authenticated: true });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
@@ -160,7 +162,7 @@ app.post('/logout', (req, res) => {
   });
 });
 
-app.post("/getUserInfo", async (req, res) => {
+app.get("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;
   const userType = req.session.userType;
   console.log('Cookies:', req.cookies);
