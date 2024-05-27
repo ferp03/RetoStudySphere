@@ -57,8 +57,6 @@ app.use(
     saveUninitialized: false,
     cookie: { 
       secure: true,  // Use secure cookies in production
-      httpOnly: true, 
-      sameSite: 'lax'
     }
   })
 );
