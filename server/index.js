@@ -29,7 +29,7 @@ db.connect().catch(err => {
 });
 
 app.use(cors({
-  origin: "https://studysphere-fernandos-projects-88891e4a.vercel.app",
+  origin: ["https://studysphere-fernandos-projects-88891e4a.vercel.app", "http://localhost:8000"],
   credentials: true,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -38,6 +38,8 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
+
+app.set('trust proxy', 1);
 
 const pgSession = connectPgSimple(session);
 
