@@ -160,11 +160,11 @@ app.post('/logout', (req, res) => {
 });
 
 app.get("/getUserInfo", async (req, res) => {
+  const userId = req.session.userId;
+  const userType = req.session.userType;
   console.log('Checking session for getUserInfo...');
   console.log('Cookies:', req.cookies);
   console.log('Session:', req.session);
-  const userId = req.session.userId;
-  const userType = req.session.userType;
 
   if (!userId || !userType) {
     return res.status(401).json({ error: "User not logged in" });
