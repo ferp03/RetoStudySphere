@@ -41,16 +41,6 @@ app.use(cookieParser());
 
 const pgSession = connectPgSimple(session);
 
-app.use((req, res, next) => {
-  console.log('Cookies: ', req.cookies); 
-  console.log('session: ', req.session);
-  console.log("Session id", req.sessionID);
-  next();
-});
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(
   session({
     store: new pgSession({
@@ -67,6 +57,17 @@ app.use(
     }
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  console.log('Cookies:', req.cookies); 
+  console.log('Session:', req.session);
+  console.log("Session id:", req.sessionID);
+  next();
+});
+
 
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
