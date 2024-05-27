@@ -139,6 +139,7 @@ app.post("/login", async (req, res) => {
         req.session.userType = userType;
         console.log(userId);
         console.log('Cookies:', req.cookies);
+        console.log('Session:', req.session);
 
         res.status(200).json({ message: "Login successful", authenticated: true });
       } else {
