@@ -41,11 +41,11 @@ app.use(cookieParser());
 
 const pgSession = connectPgSimple(session);
 
-// app.use((req, res, next) => {
-//   console.log('Cookies: ', req.cookies); 
-//   console.log('session: ', req.session);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log('Cookies: ', req.cookies); 
+  console.log('session: ', req.session);
+  next();
+});
 
 app.use(
   session({
