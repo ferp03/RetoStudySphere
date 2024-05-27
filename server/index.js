@@ -30,7 +30,9 @@ db.connect().catch(err => {
 
 app.use(cors({
   origin: "https://studysphere-fernandos-projects-88891e4a.vercel.app",
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,17 +43,17 @@ const pgSession = connectPgSimple(session);
 
 app.use(
   session({
+    secret: "TOPSECRETWORD",
+    resave: false,
+    saveUninitialized: false,
     store: new pgSession({
       pool: db, // Connection pool
       tableName: 'sessioncookies' // Use another table-name than the default "session" one
     }),
-    secret: "TOPSECRETWORD",
-    resave: false,
-    saveUninitialized: false,
     cookie: { 
       secure: false,  // Use secure cookies in production
       httpOnly: true,
-      sameSite: 'lax'
+      sameSite: 'none'
     }
   })
 );
