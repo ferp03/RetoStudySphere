@@ -143,6 +143,7 @@ app.post("/login", async (req, res) => {
             console.error('Error saving session:', err);
             return res.status(500).json({ error: "Error saving session" });
           }
+          console.log("Cookie", res.cookie);
           console.log('Login Session:', req.session);
           return res.status(200).json({ message: "Login successful", authenticated: true });
         });
@@ -176,6 +177,7 @@ app.get("/getUserInfo", async (req, res) => {
   console.log("userType", userType);
 
   if (!userId || !userType) {
+    console.log("error 401 aqui");
     return res.status(401).json({ error: "User not logged in" });
   }
 
