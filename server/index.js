@@ -160,6 +160,9 @@ app.post('/logout', (req, res) => {
 });
 
 app.get("/getUserInfo", async (req, res) => {
+  console.log('Checking session for getUserInfo...');
+  console.log('Cookies:', req.cookies);
+  console.log('Session:', req.session);
   const userId = req.session.userId;
   const userType = req.session.userType;
 
