@@ -137,8 +137,14 @@ app.post("/login", async (req, res) => {
         const userType = checkResult.rows[0].tipousuario;
         req.session.userId = userId;
         req.session.userType = userType;
-        console.log(req.session);
-        res.status(200).json({ message: "Login successful", authenticated: true });
+        req.session.save((err) => { // Asegurarse de que la sesión se guarda
+          if (err) {
+            console.error('Error saving session:', err);
+            return res.status(500).json({ error: "Error saving session" });
+          }
+          console.log('Login Session:', req.session);
+          return res.status(200).json({ message: "Login successful", authenticated: true });
+        });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
       }
