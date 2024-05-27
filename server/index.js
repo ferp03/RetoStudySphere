@@ -56,8 +56,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: { 
-      secure: false,  // Use secure cookies in production
-      httpOnly: true,
+      secure: true,  // Use secure cookies in production
+      httpOnly: true
     }
   })
 );
@@ -136,7 +136,7 @@ app.post("/login", async (req, res) => {
         const userType = checkResult.rows[0].tipousuario;
         req.session.userId = userId;
         req.session.userType = userType;
-        console.log(userId, userType);
+        console.log(req.session.userId, req.session.userType);
         res.status(200).json({ message: "Login successful", authenticated: true });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
