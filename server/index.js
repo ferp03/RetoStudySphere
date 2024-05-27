@@ -160,7 +160,7 @@ app.post('/logout', (req, res) => {
   });
 });
 
-app.get("/getUserInfo", async (req, res) => {
+app.post("/getUserInfo", async (req, res) => {
   const userId = req.session.userId;
   const userType = req.session.userType;
   console.log('Cookies:', req.cookies);

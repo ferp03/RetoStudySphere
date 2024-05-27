@@ -13,7 +13,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axiosInstance.get("/getUserInfo");
+        const response = await axiosInstance.post("/getUserInfo");
         const data = response.data;
         if (response.status === 200) {
           setUserInfo(data.userInfo);
