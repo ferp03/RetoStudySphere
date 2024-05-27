@@ -51,7 +51,7 @@ app.use(
     cookie: { 
       secure: false,  // Use secure cookies in production
       httpOnly: true,
-      sameSite: 'none'
+      sameSite: 'lax'
     }
   })
 );
