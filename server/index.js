@@ -137,6 +137,7 @@ app.post("/login", async (req, res) => {
         const userType = checkResult.rows[0].tipousuario;
         req.session.userId = userId;
         req.session.userType = userType;
+        console.log(userId);
         res.status(200).json({ message: "Login successful", authenticated: true });
       } else {
         res.status(401).json({ error: "Invalid credentials" });
