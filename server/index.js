@@ -164,8 +164,10 @@ app.post('/logout', (req, res) => {
 });
 
 app.get("/getUserInfo", async (req, res) => {
-  const userId = req.session.userId;
-  const userType = req.session.userType;
+  // const userId = req.session.userId;
+  // const userType = req.session.userType;
+  const userId = 1;
+  const userType = 'maestro';
   console.log('Session:', req.session);
   console.log("Session id", req.sessionID);
   console.log("userId", userId);
