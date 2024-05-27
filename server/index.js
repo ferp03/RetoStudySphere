@@ -45,15 +45,15 @@ app.use(
   session({
     store: new pgSession({
       pool: db,
-      tableName: 'sessioncookies' // Asegúrate de que la tabla existe en tu base de datos
+      tableName: 'sessioncookies'
     }),
     secret: "TOPSECRETWORD",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: true,  // Usa secure: true solo en producción con HTTPS
       httpOnly: true,
-      sameSite: 'none'
+      sameSite: 'none'  // Asegúrate de que las cookies se envían con solicitudes cross-origin
     }
   })
 );
@@ -125,8 +125,7 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
 
   try {
     const checkResult = await db.query("SELECT * FROM usuario WHERE correo = $1", [email]);
