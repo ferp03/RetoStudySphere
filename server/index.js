@@ -33,6 +33,7 @@ app.use(cors({
   origin: "https://studysphere-fernandos-projects-88891e4a.vercel.app",
   credentials: true
 }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
