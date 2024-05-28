@@ -1,0 +1,106 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-left: 100px;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+  .user-info, .change-password {
+    margin-top: 50px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    --border-angle: 0turn;
+    --gradient-border: conic-gradient(from var(--border-angle), transparent 25%, #b8b8b8, #c4c4c4 50%, transparent 75%);
+    padding: 3px;
+    border-radius: 15px;
+    animation: border-spin 4s linear infinite;
+  }
+  
+  .user-info::before, .change-password::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: var(--gradient-border);
+    border-radius: 10px;
+    z-index: -1;
+  }
+  
+  .change-password h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .change-password form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .change-password label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .change-password input {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .change-password button {
+    padding: 10px 20px;
+    background-color: #4c00ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .change-password button:hover {
+    background-color: #0056b3;
+  }
+  
+  .change-password p {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  @property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+  }
+  
+  @keyframes border-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+  

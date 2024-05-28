@@ -30,6 +30,7 @@ db.connect().catch(err => {
 
 app.use(cors({
   origin: ["https://studysphere-chi.vercel.app", "http://localhost:3000"],
+
   credentials: true,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -201,6 +202,39 @@ app.get("/getUserInfo", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving user information." });
   }
 });
+
+app.post("/changePassword", async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const userId = req.session.userId;
+  console.log(userId);
+  if (!userId) {
+    return res.status(401).json({ error: "User not logged in" });
+  }
+
+  try {
+    const userResult = await db.query("SELECT contraseña FROM Usuario WHERE usuarioId = $1", [userId]);
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const hashedCurrentPassword = userResult.rows[0].contraseña;
+    const isCurrentPasswordValid = await bcrypt.compare(currentPassword, hashedCurrentPassword);
+
+    if (!isCurrentPasswordValid) {
+      return res.status(401).json({ error: "Current password is incorrect" });
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
+    await db.query("UPDATE Usuario SET contraseña = $1 WHERE usuarioId = $2", [hashedNewPassword, userId]);
+
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (err) {
+    console.error("Error changing password:", err);
+    res.status(500).json({ error: `An error occurred while changing password: ${err.message}` });
+  }
+});
+
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");
