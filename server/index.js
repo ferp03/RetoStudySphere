@@ -29,7 +29,7 @@ db.connect().catch(err => {
 });
 
 app.use(cors({
-  origin: ["https://studysphere-chi.vercel.app", "http://localhost:8000"],
+  origin: ["https://studysphere-chi.vercel.app", "http://localhost:3000"],
   credentials: true,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
