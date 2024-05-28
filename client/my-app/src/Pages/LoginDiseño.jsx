@@ -33,7 +33,7 @@ const LoginDiseño = () => {
       };
 
       const handleLoginClick = () =>{
-        navigate('/mainpage');
+        navigate('/');
       };
 
       const handleGoogleLogin = () => {

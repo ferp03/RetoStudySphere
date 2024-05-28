@@ -18,7 +18,7 @@ function App() {
       {isAuthenticated ? (
         <>
           {/* Rutas para usuario autenticado */}
-          <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/user" element={<User />} />
           {/* Añadir otras rutas autenticadas aquí */}
