@@ -1,0 +1,15 @@
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid red;
+}
+
+  
+
+.modal-content{
+    --border-angle: 0turn;
+    --gradient-border: conic-gradient(from var(--border-angle), transparent 0%, #b8b8b8, #c4c4c4 50%, transparent 20%);
+    padding: 3px;
+    border-radius: 15px;
+    animation: border-spin 4s linear infinite;
+}
