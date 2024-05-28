@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
 
-app.set('trust proxy', 1);
+app.set('trust proxy', 1); //para confiar en vercel
 
 const pgSession = connectPgSimple(session);
 
