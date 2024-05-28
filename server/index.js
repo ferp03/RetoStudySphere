@@ -53,9 +53,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,  // Usa secure: true solo en producción con HTTPS
+      secure: process.env.NODE_ENV === 'production',  // Usa secure: true solo en producción con HTTPS
       httpOnly: true,
-      sameSite: 'none'  // Asegúrate de que las cookies se envían con solicitudes cross-origin
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' // Asegúrate de que las cookies se envían con solicitudes cross-origin
     }
   })
 );
