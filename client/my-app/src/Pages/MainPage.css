@@ -1,32 +1,32 @@
 .main-container {
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-    margin-left: 80px; 
-  }
-  
-  .class-boxes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px; 
-    justify-content: space-evenly; 
-  }
-  
+  display: flex;
+  justify-content: flex-start;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  margin-left: 80px;
+}
+
+.class-boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-evenly;
+}
+
 .blur-background {
   filter: blur(5px);
   transition: filter 0.3s ease;
 }
-  
-.add-class-btn{
+
+.add-class-btn {
   margin: 10px 10px 25px 0;
   align-self: flex-end;
 }
 
-.body-container{
+.body-container {
   display: flex;
   flex-direction: column;
 }
@@ -85,7 +85,7 @@
 }
 
 .custom-button:hover .custom-button__icon {
-  width: 150px; /* Asegurarte de que la anchura coincida con la del botón */
+  width: 150px;
   transform: translateX(0);
 }
 

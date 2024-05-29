@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
-import './Modal.css'
+import React from 'react';
+import './Modal.css';
 
 const Modal = ({ show, handleClose }) => {
+
+    const createClass = async () => {
+
+    }
+
+
   return (
-      <div className={`modal fade ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!show}>
-      <div className="modal-dialog">
+    <div className={`modal-container ${show ? 'show' : ''}`} style={{ display: show ? 'block' : 'none' }} aria-labelledby="exampleModalLabel" aria-hidden={!show}>
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">Add a new Class</h5>
+          <h5 className="modal-title" id="exampleModalLabel">Add a new Class</h5>
             <button type="button" className="btn-close" onClick={handleClose} aria-label="Close"></button>
           </div>
           <div className="modal-body">
@@ -24,7 +30,7 @@ const Modal = ({ show, handleClose }) => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
