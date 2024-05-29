@@ -43,7 +43,7 @@ const SignUpDiseño = () => {
       };
       
       const handleSignUpClick = () => {
-        navigate('/mainpage');
+        navigate('/');
       };
     
 

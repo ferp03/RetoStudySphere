@@ -234,6 +234,18 @@ app.post("/changePassword", async (req, res) => {
   }
 });
 
+app.post("/createClass", async (req, res) => {
+  const className = req.body;
+  const isMaestro = req.session.userType === 'maestro';
+  const userId = req.session.userId;
+  if(isMaestro){
+    await db.query("CALL creaClase($1, $2);", [userId, className]);
+    res.status(200).json({message: 'Class created successfully'});
+  }else{
+    res.status(401).json({error: 'Not correct permits'});
+  }
+})
+
 
 
 app.get("/", (req, res) => {

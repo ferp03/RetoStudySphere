@@ -1,0 +1,25 @@
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6); /* Optional: Adds a background overlay */
+    z-index: 1050; /* Ensure the modal is above other elements */
+  }
+  
+.modal-content{
+    margin-top: 50px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    --border-angle: 0turn;
+    --gradient-border: conic-gradient(from var(--border-angle), transparent 0%, #b8b8b8, #c4c4c4 50%, transparent 20%);
+    padding: 3px;
+    border-radius: 15px;
+    animation: border-spin 4s linear infinite;
+}
