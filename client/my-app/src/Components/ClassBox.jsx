@@ -1,22 +1,38 @@
 import React from 'react';
 import './ClassBox.css';
 
-const ClassBox = ({ subject, tasks}) => {
+
+const icons = [
+  'fa-book', 'fa-pencil', 'fa-flask', 'fa-atom', 'fa-music',
+  'fa-brush', 'fa-laptop', 'fa-globe', 'fa-microscope'
+];
+
+
+const getRandomIcon = () => {
+  const randomIndex = Math.floor(Math.random() * 7);
+  return icons[randomIndex];
+};
+
+
+const getRandomImage = () => {
+  const randomIndex = Math.floor(Math.random() * 4);
+  return `./subject${randomIndex}.jpg`;
+};
+
+const ClassBox = ({ subject }) => {
+  const randomIcon = getRandomIcon();
+  const randomImage = getRandomImage();
+
   return (
     <div className="class-box">
       <div className="class-header">
         <div className="class-icon">
-          <img src="" alt=""/>
+          <i className={`fas ${randomIcon}`}></i>
         </div>
         <h3 className="class-subject">{subject}</h3>
       </div>
-      <div className="task-list-container">
-        <h4 className="task-list-title">To do:</h4>
-        <ul className="task-list">
-          {tasks.map((task, index) => (
-            <li key={index} className="task-item">{task}</li>
-          ))}
-        </ul>
+      <div className="image-container">
+        <img src={randomImage} alt={subject} />
       </div>
     </div>
   );
