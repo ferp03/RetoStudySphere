@@ -235,9 +235,10 @@ app.post("/changePassword", async (req, res) => {
 });
 
 app.post("/createClass", async (req, res) => {
-  const className = req.body;
+  const className = req.body.className;
   const isMaestro = req.session.userType === 'maestro';
   const userId = req.session.userId;
+  console.log(className)
   if(isMaestro){
     await db.query("CALL creaClase($1, $2);", [userId, className]);
     res.status(200).json({message: 'Class created successfully'});
