@@ -1,0 +1,39 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-left: 100px;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    width: 100%;
+  }
+  
+
+  .game-content {
+    margin-top: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: none; /* Remove the max-width restriction */
+    height: calc(100vh - 120px); /* Set the height to fill the remaining space */
+    padding: 0; /* Remove padding */
+    border-radius: 0; /* Remove border radius */
+    text-align: center;
+    display: flex; /* Add a flex container */
+    justify-content: center; /* Center the iframe horizontally */
+    align-items: center; /* Center the iframe vertically */
+  }
+  
+  iframe {
+    border-radius: 0; /* Remove border radius */
+    width: 100%; /* Set the width to 100% */
+    height: 100%; /* Set the height to 100% */
+    max-width: 1200px; /* Set a maximum width for larger screens */
+    max-height: 800px; /* Set a maximum height for larger screens */
+  }
