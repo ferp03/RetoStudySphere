@@ -7,6 +7,7 @@ import LoginDiseño from './Pages/LoginDiseño';
 import SignUpDiseño from './Pages/SignUpDiseño';
 import ChatBot from './Pages/ChatBot';
 import User from './Pages/User';
+import ClassPage from './Pages/ClassPage';
 import Game from './Pages/Game';
 import './Pages/MainPage.css';
 
@@ -23,7 +24,7 @@ function App() {
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/user" element={<User />} />
           <Route path="/game" element={<Game />} />
-          {/* Añadir otras rutas autenticadas aquí */}
+          <Route path="/clases/:userType/:claseId/:subject" element={<ClassPage />} />
         </>
       ) : (
         <>

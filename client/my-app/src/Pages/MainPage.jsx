@@ -94,6 +94,8 @@ const MainPage = () => {
     }
   };
 
+
+
   return (
     <div>
       {userClases ? (
@@ -108,7 +110,8 @@ const MainPage = () => {
                   <ClassBox
                   key={index}
                   subject={clase.nombreclase}
-                  tasks={[]} // Ver manera de poder editar el apartado de tasks
+                  claseId={clase.claseid}
+                  userType={userType}
                   />
                 ))}
               </div>

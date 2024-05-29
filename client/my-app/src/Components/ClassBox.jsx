@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ClassBox.css';
 
 
@@ -19,12 +20,17 @@ const getRandomImage = () => {
   return `./subject${randomIndex}.jpg`;
 };
 
-const ClassBox = ({ subject }) => {
+const ClassBox = ({ subject, claseId, userType }) => {
+  const navigate = useNavigate();
   const randomIcon = getRandomIcon();
   const randomImage = getRandomImage();
 
+  const handleRedirect = () => {
+    navigate(`/clases/${userType}/${claseId}/${subject}`);
+  };
+
   return (
-    <div className="class-box">
+    <div className="class-box" onClick={handleRedirect}>
       <div className="class-header">
         <div className="class-icon">
           <i className={`fas ${randomIcon}`}></i>
