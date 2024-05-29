@@ -9,7 +9,8 @@ const Modal = ({ show, handleClose }) => {
         e.preventDefault();
         try{
             console.log(className);
-            await axiosInstance.post("/createClass", {className})
+            await axiosInstance.post("/createClass", {className});
+            handleClose();
         }catch(error){
             console.log("error al crear clase");
         }
