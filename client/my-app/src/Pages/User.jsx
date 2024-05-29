@@ -9,7 +9,7 @@ const User = () => {
   const [loading, setLoading] = useState(true);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState({ text: '', isSuccess: false });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -38,17 +38,18 @@ const User = () => {
         currentPassword,
         newPassword,
       }, { withCredentials: true });
-
+  
       if (response.status === 200) {
-        setMessage('Password changed successfully');
+        setMessage({ text: 'Password changed successfully', isSuccess: true });
       } else {
-        setMessage('Failed to change password');
+        setMessage({ text: 'Failed to change password', isSuccess: false });
       }
     } catch (error) {
       console.error('Error changing password:', error);
-      setMessage(`An error occurred while changing password: ${error.message}`);
+      setMessage({ text: `An error occurred while changing password: ${error.message}`, isSuccess: false });
     }
   };
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -94,11 +95,16 @@ const User = () => {
             </div>
             <button type="submit">Change Password</button>
           </form>
-          {message && <p>{message}</p>}
+          {message.text && (
+            <p style={{ color: message.isSuccess ? 'green' : 'red' }}>
+              {message.text}
+            </p>
+          )}
         </div>
       </div>
     </>
   );
+  
 };
 
 export default User;
