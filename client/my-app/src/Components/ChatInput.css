@@ -8,7 +8,7 @@
   .chat-input textarea {
     flex: 1;
     padding: 10px;
-    border: 1px solid #2f00ff; 
+    border: 1px solid #202020;
     border-radius: 10px 0 0 10px; 
     resize: none;
     font-size: 14px;
@@ -17,7 +17,7 @@
   
   .chat-input button {
     padding: 10px 20px;
-    background: #2f00ff; 
+    background: #202020;
     color: #fff;
     border: none;
     border-radius: 0 10px 10px 0; 
@@ -28,7 +28,7 @@
   }
   
   .chat-input button:hover {
-    background: #004494; 
+    background: #272727; 
   }
   
   .chat-input textarea::placeholder {

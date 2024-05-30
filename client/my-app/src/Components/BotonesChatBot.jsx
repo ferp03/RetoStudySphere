@@ -2,20 +2,24 @@ import React from 'react';
 import './BotonesChatBot.css';
 
 const Botones = ({ onButtonClick }) => {
+  const buttons = [
+    { icon: "fas fa-question", text: "How many points did I get in the exam?" },
+    { icon: "fas fa-calendar", text: "When do I have exam?" },
+    { icon: "fas fa-user", text: "What is my Final Grade?" }
+  ];
+
   return (
     <div className="buttons-container">
-      <div className="button" onClick={onButtonClick}>
-        <img src="/path/to/icon1.png" alt="" />
-        <p>How many points did I get in the exam?</p>
-      </div>
-      <div className="button" onClick={onButtonClick}>
-        <img src="/path/to/icon2.png" alt="" />
-        <p>When do I have exam?</p>
-      </div>
-      <div className="button" onClick={onButtonClick}>
-        <img src="/path/to/icon3.png" alt="" />
-        <p>What is my Final Grade?</p>
-      </div>
+      {buttons.map((button, index) => (
+        <div
+          key={index}
+          className="button"
+          onClick={() => onButtonClick(button.text)}
+        >
+          <i className={button.icon}></i>
+          <p>{button.text}</p>
+        </div>
+      ))}
     </div>
   );
 };

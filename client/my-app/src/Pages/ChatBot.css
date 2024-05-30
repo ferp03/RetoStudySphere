@@ -18,7 +18,7 @@
 }
 
 .chatbot header {
-  background: #2f00ff; 
+  background: #202020; 
   padding: 16px;
   text-align: center;
   display: flex;
@@ -29,7 +29,22 @@
 .chatbot header h2 {
   color: #fff;
   font-size: 1.4rem;
-  margin: 0;
+  margin-top: 0;
+}
+
+.headerXd{
+  background: #202020; 
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.headerXd h2{
+  color: #fff;
+  font-size: 1.4rem;
+  margin-top: 0;
 }
 
 .chatbox {
@@ -57,13 +72,13 @@
 }
 
 .outgoing p {
-  background: #2f00ff; 
+  background: #202020; 
   color: #fff;
   margin-left: auto;
 }
 
 .incoming p {
-  background: #1430e0; 
+  background: #363636; 
   color: #fff;
 }
 

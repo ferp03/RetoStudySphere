@@ -7,6 +7,8 @@ import LoginDiseño from './Pages/LoginDiseño';
 import SignUpDiseño from './Pages/SignUpDiseño';
 import ChatBot from './Pages/ChatBot';
 import User from './Pages/User';
+import ClassPage from './Pages/ClassPage';
+import Game from './Pages/Game';
 import './Pages/MainPage.css';
 
 function App() {
@@ -21,7 +23,8 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/user" element={<User />} />
-          {/* Añadir otras rutas autenticadas aquí */}
+          <Route path="/game" element={<Game />} />
+          <Route path="/clases/:userType/:claseId/:subject" element={<ClassPage />} />
         </>
       ) : (
         <>

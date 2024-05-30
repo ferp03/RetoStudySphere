@@ -1,29 +1,28 @@
 .buttons-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    background: #ffffff; /* Fondo azul oscuro */
-    border-bottom: 1px solid #dcdcdc; /* Borde inferior */
-  }
-  
-  .button {
-    flex: 1; /* Ajusta todos los botones al mismo tamaño */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  .button img {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .button p {
-    margin-top: 10px;
-    font-size: 14px;
-    color: black;
-  }
-  
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background: #ffffff; /* Fondo blanco */
+  border-bottom: 1px solid #dcdcdc; /* Borde inferior */
+}
+
+.button {
+  flex: 1; /* Ajusta todos los botones al mismo tamaño */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  color: black; /* Color del texto negro */
+}
+
+.button i {
+  font-size: 50px; /* Tamaño uniforme para todos los íconos */
+  color: black; /* Color de los íconos negro */
+}
+
+.button p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: black; /* Color del texto negro */
+}

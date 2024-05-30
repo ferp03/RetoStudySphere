@@ -8,7 +8,7 @@ const initializeGoogleAuth = (db, CLIENT_ID, CLIENT_SECRET, saltRounds, app) => 
       {
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: "http://localhost:8000/auth/google/mainpage",
+        callbackURL: "https://studysphereserver-fernandos-projects-88891e4a.vercel.app/auth/google/mainpage",
         userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
       },
       async (accessToken, refreshToken, profile, done) => {
@@ -62,7 +62,7 @@ const initializeGoogleAuth = (db, CLIENT_ID, CLIENT_SECRET, saltRounds, app) => 
       next();
     },
     passport.authenticate("google", {
-      failureRedirect: "http://localhost:3000",
+      failureRedirect: "https://studysphere-chi.vercel.app",
     }),
     (req, res, next) => {
       console.log("Google authentication successful, redirecting to main page...");
@@ -70,7 +70,7 @@ const initializeGoogleAuth = (db, CLIENT_ID, CLIENT_SECRET, saltRounds, app) => 
     },
     (req, res) => {
       console.log("Executing final redirection...");
-      res.redirect("http://localhost:3000/auth/google/mainpage");
+      res.redirect("https://studysphereserver-fernandos-projects-88891e4a.vercel.app/auth/google/mainpage");
     }
   );
 };
