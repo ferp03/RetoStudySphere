@@ -264,7 +264,7 @@ app.get("/getQuizzes/:classId", async (req, res) => {
   const classId = req.params.classId;
   let quizzes;
   try {
-    const result = await db.query("SELECT obtener_quiz($1)", [classId, quizzes]);
+    const result = await db.query("SELECT obtener_quiz($1, $2)", [classId, quizzes]);
     quizzes = result.rows[0].p_quizzes;  // Obtener el JSON resultante
     res.status(200).json({ quizzes });
   } catch (err) {
