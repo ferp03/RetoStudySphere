@@ -262,10 +262,12 @@ app.post("/addQuiz", async (req, res) => {
 
 app.get("/getQuizzes/:classId", async (req, res) => {
   const classId = req.params.classId;
+  console.log(classId);
   let quizzes;
   try {
-    const result = await db.query("SELECT obtener_quiz($1, $2)", [classId, quizzes]);
-    quizzes = result.rows[0].p_quizzes;  // Obtener el JSON resultante
+    const result = await db.query("CALL obtener_quiz($1, $2)", [classId, quizzes]);
+    quizzes = result.rows[0];  // Obtener el JSON resultante
+    console.log(quizzes);
     res.status(200).json({ quizzes });
   } catch (err) {
     console.error("Error retrieving quizzes:", err);
