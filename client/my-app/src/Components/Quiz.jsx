@@ -21,7 +21,6 @@ const Quiz = ({claseId}) => {
 
     return(
         <div>
-            <h1>Quizzes for Class {claseId}</h1>
             {quizzes ? (
             <ul>
                 {quizzes.map((quiz, index) => (
