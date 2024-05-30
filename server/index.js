@@ -260,6 +260,19 @@ app.post("/addQuiz", async (req, res) => {
   }
 });
 
+app.get("/getQuizzes/:classId", async (req, res) => {
+  const classId = req.params.classId;
+  try {
+    const result = await db.query("SELECT obtener_quiz($1)", [classId, quizzes]);
+    const quizzes = result.rows[0].p_quizzes;  // Obtener el JSON resultante
+    res.status(200).json({ quizzes });
+  } catch (err) {
+    console.error("Error retrieving quizzes:", err);
+    res.status(500).json({ error: "An error occurred while retrieving quizzes" });
+  }
+});
+
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");
