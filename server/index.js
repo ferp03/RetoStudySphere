@@ -247,6 +247,18 @@ app.post("/createClass", async (req, res) => {
   }
 })
 
+app.post("/addQuiz", async (req, res) => {
+  const name = req.body.name;
+  const questions = req.body.formattedQuestions;
+  const dueDate = req.body.dueDate;
+  const _claseId = req.body.claseId;
+  try{
+    const res = await db.query("CALL insert_quiz($1, $2, $3, $4)", [name, questions, dueDate, _claseId]);
+    console.log('Quiz inserted:', res.rows[0]);
+  }catch (err){
+    console.log(err);
+  }
+});
 
 
 app.get("/", (req, res) => {

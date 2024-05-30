@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
+import Quiz from "../Components/Quiz";
 import "./ClassPage.css";
 import { useState } from "react";
+import AddQuizForm from "../Components/AddQuizForm";
+
 
 const ClassPage = () => {
     const { claseId, userType, subject } = useParams();
@@ -69,8 +72,11 @@ const ClassPage = () => {
         }
         if(current===3){
             return(
-                <div>
-
+                <div className="add-quiz-container">
+                    <div className="add-quiz-title">Add new quiz</div>
+                    <div className="add-quiz-table">
+                        <AddQuizForm claseId={claseId} />
+                    </div>
                 </div>
             )
         }
@@ -82,6 +88,7 @@ const ClassPage = () => {
             <div className="content">
                 <Headers />
                 <ClassContent />
+                <Quiz claseId={claseId}/>
             </div>
         </div>
     )
