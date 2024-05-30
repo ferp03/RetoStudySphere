@@ -14,23 +14,24 @@ const ChatBot = () => {
 
   const handleSendMessage = async (message) => {
     setShowButtons(false);
-    setMessages([...messages, { text: message, sender: 'user' }]);
+    const newMessages = [...messages, { text: message, sender: 'user' }];
+    setMessages(newMessages);
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('https://studysphereserver-fernandos-projects-88891e4a.vercel.app/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message })
       });
       const data = await response.json();
-      setMessages([...messages, { text: message, sender: 'user' }, { text: data.reply, sender: 'bot' }]);
+      setMessages([...newMessages, { text: data.reply, sender: 'bot' }]);
     } catch (error) {
-      setMessages([...messages, { text: message, sender: 'user' }, { text: 'Oops! Algo salió mal. Intenta de nuevo.', sender: 'bot' }]);
+      setMessages([...newMessages, { text: 'Oops! Algo salió mal. Intenta de nuevo.', sender: 'bot' }]);
     }
   };
 
-  const handleButtonClick = () => {
-    setShowButtons(false);
+  const handleButtonClick = (message) => {
+    handleSendMessage(message);
   };
 
   useEffect(() => {
@@ -43,10 +44,10 @@ const ChatBot = () => {
       <NavBar />
       <div className="chatbot-container">
         <div className="chatbot">
-          <header>
+          <div className='headerXd'>
             <Logo />
-            <h2>TutorAI</h2>
-          </header>
+            <h2 id='titleXd'>TutorAI</h2>
+          </div>
           {showButtons && <Botones onButtonClick={handleButtonClick} />}
           <ul className="chatbox">
             {messages.map((msg, index) => (
@@ -61,4 +62,3 @@ const ChatBot = () => {
 };
 
 export default ChatBot;
-
