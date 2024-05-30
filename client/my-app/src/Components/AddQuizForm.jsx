@@ -84,18 +84,9 @@ const AddQuizForm = ({ claseId }) => {
         });
         setQuestions(newQuestions);
     };
-
-    const postQuiz = async ({ formattedQuestions }) => {
-        try {
-            await axiosInstance.post("/addQuiz", { name, formattedQuestions, claseId, dueDate });
-        } catch (error) {
-            console.log("Error al agregar quiz");
-        }
-    };
-
-    const handleAddQuiz = (e) => {
-        e.preventDefault();
-        const formattedQuestions = questions.reduce((acc, q) => {
+    
+    const handleAddQuiz = () => {
+        const _formattedQuestions = questions.reduce((acc, q) => {
             const correctAnswer = q.answers.find(a => a.correct);
             acc[q.question] = {
                 answers: q.answers.map(a => a.answer),
@@ -104,14 +95,28 @@ const AddQuizForm = ({ claseId }) => {
             return acc;
         }, {});
         const formattedDateTime = moment(dueDate).format();
-        console.log(name);
-        console.log(formattedQuestions);
-        console.log(formattedDateTime);
-        postQuiz({ formattedQuestions });
+        return [_formattedQuestions, formattedDateTime];
+    };
+    
+    const postQuiz = async (event) => {
+        try {
+            const [_questions, dueDate] = handleAddQuiz();
+            const response = await axiosInstance.post("/addQuiz", { name, _questions, claseId, dueDate });
+            if(response.status === 200){
+                console.log("Quiz created");
+            }else{      
+                event.preventDefault();
+                console.log("Error al agregar quiz");
+            }
+        } catch (error) {
+            event.preventDefault();
+            console.log("Unexpected error, try again");
+        }
     };
 
+
     return (
-        <form onSubmit={handleAddQuiz}>
+        <form onSubmit={postQuiz}>
             <div className="form-floating mb-3">
                 <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
                 <label className="form-label">Name:</label>

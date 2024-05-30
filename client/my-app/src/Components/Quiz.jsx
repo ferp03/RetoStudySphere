@@ -8,8 +8,9 @@ const Quiz = ({claseId}) => {
         const fetchQuizzes = async () => {
           try {
             const response = await axiosInstance.get(`/getQuizzes/${claseId}`);
-            const data = await response.json();
-            setQuizzes(data.quizzes);
+            const data = response.data;
+            console.log("quizzes:", data.quizzes.p_quizzes);
+            setQuizzes(data.quizzes.p_quizzes);
           } catch (error) {
             console.error('Error fetching quizzes:', error);
           }
@@ -21,7 +22,7 @@ const Quiz = ({claseId}) => {
     return(
         <div>
             <h1>Quizzes for Class {claseId}</h1>
-            {quizzes.length > 0 ? (
+            {quizzes ? (
             <ul>
                 {quizzes.map((quiz, index) => (
                 <li key={index}>

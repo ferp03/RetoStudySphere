@@ -59,7 +59,7 @@ const ClassPage = () => {
         if(current===1){
             return(
                 <div >
-
+                    <Quiz claseId={claseId}/>
                 </div>
             )
         }
@@ -88,7 +88,6 @@ const ClassPage = () => {
             <div className="content">
                 <Headers />
                 <ClassContent />
-                <Quiz claseId={claseId}/>
             </div>
         </div>
     )
