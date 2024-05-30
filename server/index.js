@@ -64,11 +64,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  console.log('Session:', req.session);
-  console.log("Session id:", req.sessionID);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('Session:', req.session);
+//   console.log("Session id:", req.sessionID);
+//   next();
+// });
 
 initializeGoogleAuth(db, CLIENT_ID, CLIENT_SECRET, saltRounds, app);
 
@@ -249,16 +249,33 @@ app.post("/createClass", async (req, res) => {
 
 app.post("/addQuiz", async (req, res) => {
   const name = req.body.name;
-  const questions = req.body.formattedQuestions;
+  const questions = req.body._questions;
   const dueDate = req.body.dueDate;
   const _claseId = req.body.claseId;
   try{
-    const res = await db.query("CALL insert_quiz($1, $2, $3, $4)", [name, questions, dueDate, _claseId]);
-    console.log('Quiz inserted:', res.rows[0]);
-  }catch (err){
-    console.log(err);
+    await db.query("CALL insert_quiz($1, $2, $3, $4)", [name, questions, dueDate, _claseId]);
+    console.log("Quiz", name, "created correctly.");
+    res.status(200).json({message: `Quiz ${name} created correctly.`});
+  }catch(err){
+    res.status.apply(401).json({error: "Values cannot be null or empty"});
   }
 });
+
+app.get("/getQuizzes/:classId", async (req, res) => {
+  const classId = req.params.classId;
+  console.log(classId);
+  let quizzes;
+  try {
+    const result = await db.query("CALL obtener_quiz($1, $2)", [classId, quizzes]);
+    quizzes = result.rows[0];  // Obtener el JSON resultante
+    //console.log(quizzes);
+    res.status(200).json({ quizzes });
+  } catch (err) {
+    console.error("Error retrieving quizzes:", err);
+    res.status(500).json({ error: "An error occurred while retrieving quizzes" });
+  }
+});
+
 
 
 app.get("/", (req, res) => {
