@@ -1,30 +1,53 @@
-import React from "react";
+import axiosInstance from "../axiosInstance";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Ongoing.css";
 
-const Ongoing = () => {
-  const quizzes = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
-  const navigate = useNavigate();
 
-  const handleAnswerClick = (quizId) => {
-    navigate(`/alumno/quiz/${quizId}`);
-  };
+const Ongoing = ({claseId}) => {
+    const [quizzes, setQuizzes ] = useState([]);
 
-  return (
-    <div className="ongoing-container">
-      {quizzes.map((quiz) => (
-        <div key={quiz.id} className="quiz-box">
-          <div className="quiz-title">{`Quiz ${quiz.id}`}</div>
-          <button
-            className="quiz-answer"
-            onClick={() => handleAnswerClick(quiz.id)}
-          >
-            Answer
-          </button>
+    const handleAnswerClick = (quizId) => {
+      navigate(`/alumno/quiz/${quizId}`);
+    };
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+        const fetchQuizzes = async () => {
+          try {
+            const response = await axiosInstance.get(`/getQuizzes/${claseId}`);
+            const data = response.data;
+            console.log("quizzes:", data.quizzes.p_quizzes);
+            setQuizzes(data.quizzes.p_quizzes);
+          } catch (error) {
+            console.error('Error fetching quizzes:', error);
+          }
+        };
+    
+        fetchQuizzes();
+      }, [claseId]);
+
+    return(
+        <div>
+            {quizzes ? (
+                  <div className="ongoing-container">
+                  {quizzes.map((quiz) => (
+                    <div key={quiz.quizid} className="quiz-box">
+                      <div className="quiz-title">{`${quiz.nombre}`}</div>
+                      <button
+                        className="quiz-answer"
+                        onClick={() => handleAnswerClick(quiz.quizid)}
+                      >
+                        Answer
+                      </button>
+                    </div>
+                  ))}
+                </div>
+            ) : (
+            <p>No quizzes found for this class.</p>
+            )}
         </div>
-      ))}
-    </div>
-  );
-};
+    )
+}
 
 export default Ongoing;
