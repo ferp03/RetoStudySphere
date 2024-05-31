@@ -101,6 +101,7 @@ const AddQuizForm = ({ claseId }) => {
     const postQuiz = async (event) => {
         try {
             const [_questions, dueDate] = handleAddQuiz();
+            console.log(name, _questions, claseId, dueDate);
             const response = await axiosInstance.post("/addQuiz", { name, _questions, claseId, dueDate });
             if(response.status === 200){
                 console.log("Quiz created");

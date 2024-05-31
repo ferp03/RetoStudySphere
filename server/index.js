@@ -37,6 +37,7 @@ app.use(cors({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -253,11 +254,13 @@ app.post("/addQuiz", async (req, res) => {
   const dueDate = req.body.dueDate;
   const _claseId = req.body.claseId;
   try{
+    console.log("Request body:", req.body);
     await db.query("CALL insert_quiz($1, $2, $3, $4)", [name, questions, dueDate, _claseId]);
     console.log("Quiz", name, "created correctly.");
     res.status(200).json({message: `Quiz ${name} created correctly.`});
   }catch(err){
-    res.status.apply(401).json({error: "Values cannot be null or empty"});
+    console.error("Error adding quiz:", err);
+    res.status.apply(500).json({error: "Values cannot be null or empty"});
   }
 });
 
