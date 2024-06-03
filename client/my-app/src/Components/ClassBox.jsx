@@ -20,13 +20,13 @@ const getRandomImage = () => {
   return `./subject${randomIndex}.jpg`;
 };
 
-const ClassBox = ({ subject, claseId, userType }) => {
+const ClassBox = ({ subject, claseId }) => {
   const navigate = useNavigate();
   const randomIcon = getRandomIcon();
   const randomImage = getRandomImage();
 
   const handleRedirect = () => {
-    navigate(`/clases/${userType}/${claseId}/${subject}`);
+    navigate(`/clases/${claseId}/${subject}`);
   };
 
   return (

@@ -1,0 +1,10 @@
+.main-container{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 80px;
+  }

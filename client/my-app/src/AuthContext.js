@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userType, setUserType] = useState(() => localStorage.getItem('userType') || '');
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -19,17 +20,26 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    if (userType) {
+      localStorage.setItem('userType', userType);
+    } else {
+      localStorage.removeItem('userType');
+    }
+  }, [userType]);
+  
   const logout = async () => {
     try {
       await axiosInstance.post('/logout');
       setIsAuthenticated(false);
+      setUserType('');
     } catch (error) {
       console.error("Logout failed", error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, userType, setUserType, logout }}>
       {children}
     </AuthContext.Provider>
   );

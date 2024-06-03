@@ -106,12 +106,11 @@ const AddQuizForm = ({ claseId }) => {
             const response = await axiosInstance.post("/addQuiz", { name, _questions, claseId, dueDate });
             if(response.status === 200){
                 console.log("Quiz created");
+                window.location.reload();
             }else{      
-                event.preventDefault();
                 console.log("Error al agregar quiz");
             }
         } catch (error) {
-            event.preventDefault();
             console.log("Unexpected error, try again");
         }
     };

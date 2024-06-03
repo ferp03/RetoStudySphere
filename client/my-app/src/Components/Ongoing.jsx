@@ -1,16 +1,19 @@
 import axiosInstance from "../axiosInstance";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import "./Ongoing.css";
 
 
-const Ongoing = ({claseId}) => {
+const Ongoing = ({claseId, subject}) => {
     const [quizzes, setQuizzes ] = useState([]);
-
-    const handleAnswerClick = (quizId) => {
-      navigate(`/alumno/quiz/${quizId}`);
-    };
+    const { userType } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const handleClickEvent = (quizId) => {
+      navigate(`quiz/${quizId}`);
+    };
+
   
     useEffect(() => {
         const fetchQuizzes = async () => {
@@ -27,7 +30,8 @@ const Ongoing = ({claseId}) => {
         fetchQuizzes();
       }, [claseId]);
 
-    return(
+    if(userType === 'maestro'){
+      return(
         <div>
             {quizzes ? (
                   <div className="ongoing-container">
@@ -36,18 +40,41 @@ const Ongoing = ({claseId}) => {
                       <div className="quiz-title">{`${quiz.nombre}`}</div>
                       <button
                         className="quiz-answer"
-                        onClick={() => handleAnswerClick(quiz.quizid)}
+                        onClick={() => handleClickEvent(quiz.quizid)}
                       >
-                        Answer
+                        View results
                       </button>
                     </div>
                   ))}
                 </div>
             ) : (
-            <p>No quizzes found for this class.</p>
+            <p>No quizzes scheduled right now.</p>
             )}
         </div>
     )
+    }else{
+      return(
+          <div>
+              {quizzes ? (
+                    <div className="ongoing-container">
+                    {quizzes.map((quiz) => (
+                      <div key={quiz.quizid} className="quiz-box">
+                        <div className="quiz-title">{`${quiz.nombre}`}</div>
+                        <button
+                          className="quiz-answer"
+                          onClick={() => handleClickEvent(quiz.quizid)}
+                        >
+                          Answer
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+              ) : (
+              <p>No quizzes to solve right now.</p>
+              )}
+          </div>
+      )
+    }
 }
 
 export default Ongoing;
