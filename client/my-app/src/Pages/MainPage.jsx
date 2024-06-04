@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import NavBar from '../Components/NavBar';
 import Header from '../Components/Header';
 import ClassBox from '../Components/ClassBox';
 import Modal from '../Components/Modal';
 import { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
+import { AuthContext } from '../AuthContext';
 import './MainPage.css';
 
 const MainPage = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {setUserType} = useContext(AuthContext); 
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -18,6 +20,7 @@ const MainPage = () => {
         const data = response.data;
         if (response.status === 200) {
           setUserInfo(data.userInfo);
+          setUserType(data.userInfo.info.tipousuario)
         } else {
           console.error("Failed to fetch user info:", data.error);
         }
@@ -111,7 +114,6 @@ const MainPage = () => {
                   key={index}
                   subject={clase.nombreclase}
                   claseId={clase.claseid}
-                  userType={userType}
                   />
                 ))}
               </div>

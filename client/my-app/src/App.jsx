@@ -9,6 +9,7 @@ import ChatBot from './Pages/ChatBot';
 import User from './Pages/User';
 import ClassPage from './Pages/ClassPage';
 import Game from './Pages/Game';
+import QuizPage from './Pages/QuizPage';
 import './Pages/MainPage.css';
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
           <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/user" element={<User />} />
           <Route path="/game" element={<Game />} />
-          <Route path="/clases/:userType/:claseId/:subject" element={<ClassPage />} />
+          {/* ejemplo de contexto aqui donde pueda accesar a el tipo de usuario y a la clase en la que se encuentra*/}
+          <Route path="/clases/:claseId/:subject" element={<ClassPage />} />
+          <Route path="clases/:claseId/:subject/quiz/*" element={<QuizPage />} />
         </>
       ) : (
         <>

@@ -1,16 +1,18 @@
 import { useParams } from "react-router-dom";
 import NavBar from "../Components/NavBar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AddQuizForm from "../Components/AddQuizForm";
 import Past from "../Components/Past";
 import Ongoing from "../Components/Ongoing";
+import { AuthContext } from "../AuthContext";
 import "./ClassPage.css";
 
 
 const ClassPage = () => {
-    const { claseId, userType, subject } = useParams();
+    const { claseId, subject } = useParams();
     const [ current, setCurrent ] = useState(1);
-
+    const { userType } = useContext(AuthContext);
+    
     const Headers = () => {
         if(userType  === 'maestro'){
             return(
@@ -42,12 +44,12 @@ const ClassPage = () => {
                     <div className="quizzes-container">
                         <div className="quizzes-box">
                             <h3 
-                            style={{cursor: "pointer", textDecoration: current ? "underline" : ""}}
-                            onClick={() => setCurrent(true)} >Ongoing Quizzes</h3>
+                            style={{cursor: "pointer", textDecoration: current===1 ? "underline" : ""}}
+                            onClick={() => setCurrent(1)} >Ongoing Quizzes</h3>
                         </div>
                         <div className="quizzes-box">
-                            <h3 style={{cursor: "pointer", textDecoration: current ? "" : "underline"}}
-                            onClick={() => setCurrent(false)}
+                            <h3 style={{cursor: "pointer", textDecoration: current===2 ? "underline" : ""}}
+                            onClick={() => setCurrent(2)}
                             >Past Quizzes</h3>
                         </div>
                     </div>
@@ -60,7 +62,7 @@ const ClassPage = () => {
         if(current===1){
             return(
                 <div >
-                    <Ongoing claseId={claseId}/>
+                    <Ongoing claseId={claseId} subject={subject}/>
                 </div>
             )
         }
