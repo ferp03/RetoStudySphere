@@ -27,7 +27,7 @@ function App() {
           <Route path="/game" element={<Game />} />
           {/* ejemplo de contexto aqui donde pueda accesar a el tipo de usuario y a la clase en la que se encuentra*/}
           <Route path="/clases/:claseId/:subject" element={<ClassPage />} />
-          <Route path="clases/:claseId/:subject/quiz/*" element={<QuizPage />} />
+          <Route path="clases/:claseId/:subject/quiz/:quizId" element={<QuizPage />} />
         </>
       ) : (
         <>
