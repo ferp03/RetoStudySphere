@@ -37,6 +37,32 @@ const StudentBot = ({ dificultad, interval, questionCount }) => {
         };
     };
 
+    const calcularPerformance = (totalGrade, confidence) => {
+        const FR = totalGrade / questionCount;
+        const FC = confidence / 100;
+
+        let FRLevel = "Average";
+        let FCLevel = "Average";
+
+        if (FR >= 0.7) FRLevel = "High";
+        else if (FR <= 0.3) FRLevel = "Low";
+
+        if (FC >= 0.7) FCLevel = "High";
+        else if (FC <= 0.3) FCLevel = "Low";
+
+        if (FRLevel === "Average" && FCLevel === "Average") return "Average";
+        if (FRLevel === "High" && FCLevel === "High") return "High";
+        if (FRLevel === "Low" && FCLevel === "Low") return "Low";
+        if (FRLevel === "High" && FCLevel === "Low") return "Average";
+        if (FRLevel === "Low" && FCLevel === "High") return "Low";
+        if (FRLevel === "Low" && FCLevel === "Average") return "Low";
+        if (FRLevel === "Average" && FCLevel === "Low") return "Low";
+        if (FRLevel === "Average" && FCLevel === "High") return "Average";
+        if (FRLevel === "High" && FCLevel === "Average") return "Average";
+
+        return "Average";
+    };
+
     useEffect(() => {
         if (stats.answers < questionCount) {
             const timer = setInterval(() => {
@@ -53,6 +79,8 @@ const StudentBot = ({ dificultad, interval, questionCount }) => {
         }
     }, [stats.answers, interval, questionCount]);
 
+    const performance = calcularPerformance(stats.totalGrade, stats.confidence);
+
     return (
         <div className="student-info">
             <div className="student-typeVal">
@@ -60,14 +88,14 @@ const StudentBot = ({ dificultad, interval, questionCount }) => {
                 <p>Correct:</p>
                 <p>Incorrect:</p>
                 <p>Confidence:</p>
-                <p>Total Grade:</p>
+                <p>Performance:</p>
             </div>
             <div className="student-value">
                 <p>{stats.answers}</p>
                 <p>{stats.correct}</p>
                 <p>{stats.incorrect}</p>
                 <p>{stats.confidence}%</p>
-                <p>{stats.totalGrade}</p>
+                <p>{performance}</p>
             </div>
         </div>
     );

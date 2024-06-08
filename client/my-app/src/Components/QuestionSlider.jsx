@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Carousel } from "react-bootstrap";
 
 const QuestionSlider = ({ searchQuiz, interval, questionCount }) => {
     const [index, setIndex] = useState(0);
     const [timeLeft, setTimeLeft] = useState(interval / 1000);
     const totalQ = questionCount;
+    const handleSelect = useCallback((selectedIndex) => {
+        setIndex(selectedIndex);
+        setTimeLeft(interval / 1000); // reset the timer
+    });
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -22,12 +26,8 @@ const QuestionSlider = ({ searchQuiz, interval, questionCount }) => {
                 setTimeLeft(0);
             }
         }
-    }, [timeLeft, index, totalQ, interval]);
+    }, [timeLeft, index, totalQ, interval, handleSelect]);
 
-    const handleSelect = (selectedIndex) => {
-        setIndex(selectedIndex);
-        setTimeLeft(interval / 1000); // reset the timer
-    };
 
     return (
         <Carousel interval={null} activeIndex={index} onSelect={handleSelect} controls={false} variant="dark" className="question-bg">
