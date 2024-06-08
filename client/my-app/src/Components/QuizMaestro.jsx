@@ -1,68 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import { Carousel } from "react-bootstrap";
+import { useContext } from "react";
 import { AuthContext } from "../AuthContext";
+import QuestionSlider from "./QuestionSlider";
+import StudentBot from "./StudentBot";
 import "../Pages/QuizPage.css";
-import { useSearchParams } from "react-router-dom";
-
-const QuestionSlider = ({ searchQuiz }) => {
-    const interval = 10000;
-    const [ timeLeft, setTimeLeft ] = useState(interval / 1000);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(prev => (1 ? prev - 1 : interval/1000));
-        }, 1000);
-        return () => clearInterval(timer);
-    }, []);
-
-    useEffect(() => {
-        if(timeLeft === -1){
-            setTimeLeft(interval/1000);
-        }
-    }, [timeLeft]);
-
-    return (
-        <Carousel interval={interval} controls={false} variant="dark" className="question-bg">
-            {searchQuiz && Object.entries(searchQuiz.preguntas).map(([question, details], index) => (
-                <Carousel.Item key={index} >
-                    <img src={"/slidebg.png"} className="d-block w-100 custom-rounded"/>
-                    <Carousel.Caption className="center-caption">
-                        <h3>{question}</h3>
-                        <p>Tiempo restante: {timeLeft}s</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            ))}
-        </Carousel>
-    );
-};
-
 
 const QuizMaestro = ({quizId}) => {
-    const { quizArr } = useContext(AuthContext);
-
-    console.log('quiz id:', quizId, 'quiz:', quizArr);
+    const { quizArr, nombreUsuario } = useContext(AuthContext);
     const numericQuizId = Number(quizId);
     const searchQuiz = quizArr.find(quiz => quiz.quizid === numericQuizId);
-    console.log(searchQuiz);
-    
-    {/* <ul>
-        {details.answers.map((answer, idx) => (
-            <li key={idx}>{answer}</li>
-        ))}
-    </ul> */}
-
+    const questionCount = Object.keys(searchQuiz.preguntas).length;
+    const interval = 11000; //contador para respuestas y preguntas
 
     return (
         <div className="body-container">
             <div className="upper-half">
                 <div className="teacher-container">
-                    <div className="teacher-img"></div>
+                    <div className="teacher-img"> <img src={"/teacherImg.svg"} alt="" className="d-block h-100"/></div>
                     <div className="teacher-name">
-                        Profesor Fernando
+                        Profesor {nombreUsuario}
                     </div>
                 </div>
                 <div className="question-container">
-                    {searchQuiz && <QuestionSlider searchQuiz={searchQuiz} /> }
+                    {searchQuiz && <QuestionSlider searchQuiz={searchQuiz} interval={interval} questionCount={questionCount}/> }
                 </div>
                 <div className="podium-container">
                     <div className="podium-bg">
@@ -73,13 +32,25 @@ const QuizMaestro = ({quizId}) => {
 
             <div className="lower-half">
                 <div className="student-container">
-                    <div className="student-img"></div>
+                    <div className="student-img"> <img src={"/student1.svg"} alt="" className="d-block h-100"/></div>
+                    <div className="student-content">
+                        <div className="student-name">David Mireles </div>
+                        <StudentBot dificultad={'facil'} interval={interval} questionCount={questionCount}/>
+                    </div>
                 </div>
                 <div className="student-container">
-                    <div className="student-img"></div>
+                    <div className="student-img"> <img src={"/student2.svg"} alt="" className="d-block h-100"/></div>
+                    <div className="student-content">
+                        <div className="student-name">Alejandro Charles</div>
+                        <StudentBot dificultad={'mediano'} interval={interval} questionCount={questionCount}/>
+                    </div>
                 </div>
                 <div className="student-container">
-                    <div className="student-img"></div>
+                    <div className="student-img"> <img src={"/student3.svg"} alt="" className="d-block h-100"/></div>
+                    <div className="student-content">
+                        <div className="student-name">Antonio Bento</div>
+                        <StudentBot dificultad={'dificil'} interval={interval} questionCount={questionCount}/>
+                    </div>
                 </div>
             </div>
         </div>

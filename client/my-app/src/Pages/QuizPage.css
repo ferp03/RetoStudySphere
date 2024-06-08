@@ -8,6 +8,7 @@
     padding: 20px;
     margin-left: 80px;
 }
+
 .body-container{
     display: flex;
     flex-direction: column;
@@ -32,14 +33,17 @@
         .teacher-img{
             background-color: white;
             border-radius: 20px;
-            margin: 20px 20px 15px;
+            margin: 20px 20px 0px;
             height: 120px;
             width: 160px;
+            display: flex;
+            justify-content: center;
         }
 
         .teacher-name{
             color: white;
             text-align: center;
+            padding: 5px;
         }
 
     .question-container{
@@ -126,6 +130,39 @@
     .student-img{
         background-color: white;
         border-radius: 20px;
-        margin: 20px 20px 15px;
+        margin: 20px 20px 12px;
         height: 120px;
+        display: flex;
+        justify-content: center;
     }
+
+    .student-content{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .student-name{
+        color: white;
+        text-align: center;
+        padding: 5px;
+        padding-top: 0;
+    }
+
+    .student-info{
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8rem;
+        padding: 0px 8px 8px;
+        justify-content: space-around;
+   }
+
+   .student-typeVal{
+    color: white;
+    text-align: left;
+   }
+
+   .student-value{
+    color: white;
+    align-self: flex-end;
+    text-align: left;
+   }

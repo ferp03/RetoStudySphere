@@ -25,8 +25,8 @@ const Ongoing = ({ claseId, subject }) => {
             setQuizArr(data.quizzes.p_quizzes);
           }
           setQuizzes(data.quizzes.p_quizzes);
-          console.log("quizzes:", data.quizzes.p_quizzes);
-          console.log("quizzes Arr:", quizArr);
+          // console.log("quizzes:", data.quizzes.p_quizzes);
+          // console.log("quizzes Arr:", quizArr);
         } else {
           console.error("Failed to fetch quizzes:", data.error);
         }
