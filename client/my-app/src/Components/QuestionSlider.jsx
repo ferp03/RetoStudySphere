@@ -21,7 +21,6 @@ const QuestionSlider = ({ searchQuiz, interval, questionCount }) => {
         if (timeLeft === 0) {
             if (index < totalQ) {
                 handleSelect(index + 1);
-                setTimeLeft(interval / 1000);
             }else{
                 setTimeLeft(0);
             }
