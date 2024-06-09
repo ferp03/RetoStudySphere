@@ -11,7 +11,7 @@ import './MainPage.css';
 const MainPage = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
-  const {setUserType} = useContext(AuthContext); 
+  const {setUserType, setNombreUsuario} = useContext(AuthContext); 
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -20,7 +20,8 @@ const MainPage = () => {
         const data = response.data;
         if (response.status === 200) {
           setUserInfo(data.userInfo);
-          setUserType(data.userInfo.info.tipousuario)
+          setUserType(data.userInfo.info.tipousuario);
+          setNombreUsuario(data.userInfo.info.nombre);
         } else {
           console.error("Failed to fetch user info:", data.error);
         }
@@ -32,7 +33,7 @@ const MainPage = () => {
     };
 
     fetchUserInfo();
-  }, []);
+  }, [setUserType, setNombreUsuario]);
   // No borrar
   if (loading) {
     return <div>Loading...</div>;

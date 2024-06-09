@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../AuthContext";
 import NavBar from "../Components/NavBar";
+import QuizMaestro from "../Components/QuizMaestro";
+import Logo from "../Components/Logo";
+import QuizEstudiante from "../Components/QuizEstudiante";
 import "./QuizPage.css";
 
 
@@ -10,14 +13,18 @@ const QuizPage = () => {
     const { userType } = useContext(AuthContext);
 
 
-    const Render = () => {
+    const Quiz = () => {
         if(userType === 'maestro'){
             return(
-                <></>
+                <>
+                <QuizMaestro quizId={quizId}/>
+                </>
             )
         }else{
             return(
-                <></>
+                <>
+                <QuizEstudiante quizId={quizId}/>
+                </>
             )
         }
     };
@@ -26,7 +33,8 @@ const QuizPage = () => {
         <div className="main-container">
             <NavBar />
             <div className="content">
-                <h3>Vista de {userType}</h3>
+                {/*<div className="header"> <Logo /> </div>*/}
+                <Quiz />
             </div>
         </div>
     )
