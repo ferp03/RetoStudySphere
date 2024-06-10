@@ -316,6 +316,18 @@ app.post("/submitQuizResults", async (req, res) => {
   }
 });
 
+app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
+  const claseId = parseInt(req.params.claseId, 10);
+
+  try {
+    const result = await db.query("SELECT obtener_alumno_clase_quiz($1)", [claseId]);
+    res.status(200).json(result.rows[0].obtener_alumno_clase_quiz);
+  } catch (err) {
+    console.error("Error retrieving data:", err);
+    res.status(500).json({ error: "An error occurred while retrieving data." });
+  }
+});
+
 
 
 app.get("/", (req, res) => {

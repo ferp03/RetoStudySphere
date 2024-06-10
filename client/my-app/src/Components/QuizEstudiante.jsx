@@ -141,7 +141,7 @@ const QuizEstudiante = ({ quizId, claseId }) => {
         quizId: numericQuizId,
         incorrectas: JSON.stringify(incorrectAnswers),
         correctas: JSON.stringify(correctAnswers),
-        calificacion: correctAnswers.length / totalQ,
+        calificacion: (correctAnswers.length / totalQ)*100,
         confidence: JSON.stringify(confidenceLvl),
         performance
       };

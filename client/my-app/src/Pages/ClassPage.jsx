@@ -67,7 +67,7 @@ const ClassPage = () => {
             )
         }
         if(current===2){
-            return <Past />
+            return <Past claseId={claseId}/>
         }
         if(current===3){
             return(
