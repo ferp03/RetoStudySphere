@@ -27,7 +27,7 @@ const ClassPage = () => {
                         <div className="quizzes-box">
                             <h3 style={{cursor: "pointer", textDecoration: current===2 ? "underline" : ""}}
                             onClick={() => setCurrent(2)}
-                            >Past Quizzes</h3>
+                            >Quizzes Results</h3>
                         </div>
                         <div className="quizzes-box">
                         <h3 style={{cursor: "pointer", textDecoration: current===3 ? "underline" : ""}}

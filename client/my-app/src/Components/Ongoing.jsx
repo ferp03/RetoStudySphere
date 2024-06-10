@@ -54,7 +54,7 @@ const Ongoing = ({ claseId, subject }) => {
                   className="quiz-answer"
                   onClick={() => handleClickEvent(quiz.quizid)}
                 >
-                  View results
+                  See students
                 </button>
               </div>
             ))}

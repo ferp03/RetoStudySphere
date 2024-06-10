@@ -3,15 +3,43 @@ import { AuthContext } from "../AuthContext";
 import axiosInstance from "../axiosInstance";
 import "./Past.css";
 
-const Past = ({claseId}) => {
-  const {quizArr} = useContext(AuthContext);
-  const [quizzesInfo, setQuizzesInfo] = useState([]);
+const QuizDetails = ({ quiz, title }) => {
+  return (
+    <div className="quiz-details">
+      <h2 className="quiz-title">Resultados de {title}</h2>
+      <table className="quiz-table">
+        <thead>
+          <tr>
+            <th>Nombre del Alumno</th>
+            <th>Respuestas Incorrectas</th>
+            <th>Respuestas Correctas</th>
+            <th>Calificación</th>
+            <th>Confianza</th>
+            <th>Desempeño</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(quiz).map(([nombreAlumno, detalles], index) => (
+            <tr key={index}>
+              <td className="quiz-student">{nombreAlumno}</td>
+              <td className="quiz-incorrects">{detalles.incorrectas.join(", ")}</td>
+              <td className="quiz-corrects">{detalles.correctas.join(", ")}</td>
+              <td className="quiz-score">{detalles.calificacion}</td>
+              <td className="quiz-confidence">{detalles.confidence.join(", ")}</td>
+              <td className="quiz-performance">{detalles.performance}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-
-  //iba a hacer una llamada al backend a una funcion -> SELECT obtener_alumno_clase_quiz(8);
-  // esta funcion regresa toda la info que tenga x clase id
-  // en base a eso iba a hacer una comparacion con quizArr para renderizar los quizzesId que coinciden entre ambos jsons
-  // renderizas los quizzes que si tienen informacion y la muestras
+const Past = ({ claseId }) => {
+  const { quizArr } = useContext(AuthContext);
+  const [quizzesInfo, setQuizzesInfo] = useState({});
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [qTitle, setTitle] = useState('');
 
   useEffect(() => {
     const fetchQuizzesInfo = async () => {
@@ -26,21 +54,46 @@ const Past = ({claseId}) => {
     fetchQuizzesInfo();
   }, [claseId]);
 
-  const quizzesToRender = quizzesInfo.filter((quiz) =>
+  // Convert quizzesInfo to an array of values
+  const quizzesToRender = Object.values(quizzesInfo).filter((quiz) =>
     quizArr.some((q) => q.quizid === quiz.quizid)
   );
 
-  console.log(quizzesToRender);
+  const handleQuizClick = (quizid, _title) => {
+    const quiz = Object.entries(quizzesInfo).reduce((acc, [nombre, detalles]) => {
+      if (detalles.quizid === quizid) {
+        acc[nombre] = detalles;
+      }
+      return acc;
+    }, {});
+    setSelectedQuiz(quiz);
+    setTitle(_title);
+  };
 
   return (
     <div className="pastcontainer">
-      {quizzesToRender.map((quiz) => (
-        <div key={quiz.quizid} className="quiz-box">
-          <div className="quiz-title">{`Quiz ${quiz.quizid}`}</div>
-          <div className="quiz-percentage">{`${quiz.calificacion * 10}%`}</div>
-          <div className="quiz-score">{quiz.calificacion}/10 Average</div>
+      {!selectedQuiz ? (
+        <div className="quizzes-grid">
+          {quizzesToRender.map((quiz, index) => {
+            const correspondingQuiz = quizArr.find((q) => q.quizid === quiz.quizid);
+            return (
+              <div
+                key={index}
+                className="quiz-box"
+                onClick={() => handleQuizClick(quiz.quizid, correspondingQuiz ? correspondingQuiz.nombre : quiz.quizid)}
+              >
+                <div className="quiz-title">{`${correspondingQuiz ? correspondingQuiz.nombre : quiz.quizid}`}</div>
+                <div className="quiz-percentage">{`${quiz.calificacion}%`}</div>
+                <div className="quiz-score">{quiz.calificacion}/100 Average</div>
+              </div>
+            );
+          })}
         </div>
-      ))}
+      ) : (
+        <div className="quiz-details-container">
+          <QuizDetails quiz={selectedQuiz} title={qTitle}/>
+        </div>
+      )}
     </div>
   );
 };
