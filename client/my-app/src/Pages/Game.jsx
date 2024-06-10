@@ -10,7 +10,7 @@ const Game = () => {
       <div className="game-container">
         <header>
           <Logo />
-          <h1>Play Game for Extra Credit</h1>
+          <h1>Play to Relieve Stress</h1>
         </header>
         <div className="game-content">
         <iframe src="https://i.simmer.io/@LordVader305/astro-blast" title="Astro Blast Game" ></iframe>
