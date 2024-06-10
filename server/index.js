@@ -279,7 +279,7 @@ app.get("/getQuizzes/:classId", async (req, res) => {
   }
 });
 
-
+app.post("")
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");

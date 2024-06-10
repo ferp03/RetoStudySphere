@@ -4,7 +4,7 @@ import QuestionSlider from "./QuestionSlider";
 import StudentBot from "./StudentBot";
 import "../Pages/QuizPage.css";
 
-const QuizMaestro = ({quizId}) => {
+const QuizMaestro = ({quizId, claseId}) => {
     const { quizArr, nombreUsuario } = useContext(AuthContext);
     const numericQuizId = Number(quizId);
     const searchQuiz = quizArr.find(quiz => quiz.quizid === numericQuizId);
