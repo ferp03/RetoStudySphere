@@ -86,6 +86,8 @@ app.get("/checkSession", (req, res) => {
   }
 });
 
+
+
 app.post("/signup", async (req, res) => {
   console.log("Sign Up in process");
   const { name, email, password, isTeacher } = req.body;
@@ -204,6 +206,24 @@ app.get("/getUserInfo", async (req, res) => {
   }
 });
 
+app.get("/getUserLastUpdate", async (req, res) => {
+  const userId = req.session.userId;
+  console.log("Ruta /getUserLastUpdate llamada"); 
+  if (!userId) {
+    console.log("error 401 aqui");
+    return res.status(401).json({ error: "User not logged in" });
+  }
+
+  try {
+    const result = await db.query("SELECT ultimaModificacion FROM UsuarioLog WHERE usuarioId = $1", [userId]);
+    const lastUpdate = result.rows[0].ultimaModificacion;
+
+    res.status(200).json({ lastUpdate });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "An error occurred while retrieving the user's last update." });
+  }
+});
 app.post("/changePassword", async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   const userId = req.session.userId;
@@ -279,7 +299,6 @@ app.get("/getQuizzes/:classId", async (req, res) => {
   }
 });
 
-app.post("")
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");

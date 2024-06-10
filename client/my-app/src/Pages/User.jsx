@@ -15,6 +15,7 @@ const User = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await axiosInstance.get('/getUserInfo', { withCredentials: true });
+        const result = await axiosInstance.get('/getUserLastUpdate', { withCredentials: true });
         const data = response.data;
         if (response.status === 200) {
           setUserInfo(data.userInfo);
@@ -68,9 +69,22 @@ const User = () => {
           <h1>User Information</h1>
         </header>
         <div className="user-info">
-          <p><strong>Name:</strong> {userInfo.info.nombre}</p>
-          <p><strong>Type:</strong> {userInfo.info.tipousuario}</p>
-          <p><strong>Email:</strong> {userInfo.info.correo}</p>
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Name:</strong></td>
+                <td>{userInfo.info.nombre}</td>
+              </tr>
+              <tr>
+                <td><strong>Type:</strong></td>
+                <td>{userInfo.info.tipousuario}</td>
+              </tr>
+              <tr>
+                <td><strong>Email:</strong></td>
+                <td>{userInfo.info.correo}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div className="change-password">
           <h3>Change Password</h3>
@@ -104,7 +118,6 @@ const User = () => {
       </div>
     </>
   );
-  
 };
 
 export default User;
