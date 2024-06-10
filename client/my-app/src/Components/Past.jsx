@@ -22,11 +22,11 @@ const QuizDetails = ({ quiz, title }) => {
           {Object.entries(quiz).map(([nombreAlumno, detalles], index) => (
             <tr key={index}>
               <td className="quiz-student">{nombreAlumno}</td>
-              <td className="quiz-incorrects">{detalles.incorrectas.join(", ")}</td>
-              <td className="quiz-corrects">{detalles.correctas.join(", ")}</td>
-              <td className="quiz-score">{detalles.calificacion}</td>
-              <td className="quiz-confidence">{detalles.confidence.join(", ")}</td>
-              <td className="quiz-performance">{detalles.performance}</td>
+              <td className="quiz-incorrects">{detalles?.incorrectas?.join(", ")}</td>
+              <td className="quiz-corrects">{detalles?.correctas?.join(", ")}</td>
+              <td className="quiz-score">{detalles?.calificacion}</td>
+              <td className="quiz-confidence">{detalles?.confidence?.join(", ")}</td>
+              <td className="quiz-performance">{detalles?.performance}</td>
             </tr>
           ))}
         </tbody>
@@ -45,9 +45,10 @@ const Past = ({ claseId }) => {
     const fetchQuizzesInfo = async () => {
       try {
         const response = await axiosInstance.get(`getAlumnoClaseQuiz/${claseId}`);
-        setQuizzesInfo(response.data);
+        setQuizzesInfo(response.data || {}); // Asegurarse de que sea un objeto
       } catch (error) {
         console.error("Error fetching quizzes info:", error);
+        setQuizzesInfo({}); // Asegurarse de que sea un objeto
       }
     };
 
@@ -55,12 +56,12 @@ const Past = ({ claseId }) => {
   }, [claseId]);
 
   // Convert quizzesInfo to an array of values
-  const quizzesToRender = Object.values(quizzesInfo).filter((quiz) =>
+  const quizzesToRender = Object.values(quizzesInfo || {}).filter((quiz) =>
     quizArr.some((q) => q.quizid === quiz.quizid)
   );
 
   const handleQuizClick = (quizid, _title) => {
-    const quiz = Object.entries(quizzesInfo).reduce((acc, [nombre, detalles]) => {
+    const quiz = Object.entries(quizzesInfo || {}).reduce((acc, [nombre, detalles]) => {
       if (detalles.quizid === quizid) {
         acc[nombre] = detalles;
       }

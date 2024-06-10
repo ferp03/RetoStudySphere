@@ -20,19 +20,21 @@ const Ongoing = ({ claseId, subject }) => {
         const response = await axiosInstance.get(`/getQuizzes/${claseId}`);
         const data = response.data;
         if (response.status === 200) {
-          // Actualizar solo si los datos son diferentes
-          if (JSON.stringify(data.quizzes.p_quizzes) !== JSON.stringify(quizArr)) {
-            setQuizArr(data.quizzes.p_quizzes);
+          // Ensure data.quizzes.p_quizzes is always an array
+          const fetchedQuizzes = data.quizzes.p_quizzes || [];
+          // Update only if the data is different
+          if (JSON.stringify(fetchedQuizzes) !== JSON.stringify(quizArr)) {
+            setQuizArr(fetchedQuizzes);
           }
-          setQuizzes(data.quizzes.p_quizzes);
-          // console.log("quizzes:", data.quizzes.p_quizzes);
-          // console.log("quizzes Arr:", quizArr);
+          setQuizzes(fetchedQuizzes);
         } else {
           console.error("Failed to fetch quizzes:", data.error);
+          setQuizzes([]); // Set to empty array in case of error
         }
         setLoading(false);
       } catch (error) {
         console.error('Error fetching quizzes:', error);
+        setQuizzes([]); // Set to empty array in case of error
         setLoading(false);
       }
     };
