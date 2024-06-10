@@ -224,6 +224,7 @@ app.get("/getUserLastUpdate", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving the user's last update." });
   }
 });
+
 app.post("/changePassword", async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   const userId = req.session.userId;
@@ -298,6 +299,23 @@ app.get("/getQuizzes/:classId", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving quizzes" });
   }
 });
+
+app.post("/submitQuizResults", async (req, res) => {
+  const { alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance } = req.body;
+
+  try {
+    await db.query(
+      `INSERT INTO Alumno_Clase_Quiz (alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance]
+    );
+    res.status(200).json({ message: "Quiz results submitted successfully" });
+  } catch (err) {
+    console.error("Error inserting quiz results:", err);
+    res.status(500).json({ error: "An error occurred while submitting quiz results" });
+  }
+});
+
 
 
 app.get("/", (req, res) => {
