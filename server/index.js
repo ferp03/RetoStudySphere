@@ -217,7 +217,7 @@ app.get("/getUserLastUpdate", async (req, res) => {
   try {
     const result = await db.query("SELECT ultimaModificacion FROM UsuarioLog WHERE usuarioId = $1", [userId]);
     const lastUpdate = result.rows[0].ultimaModificacion;
-
+    console.log(lastUpdate);
     res.status(200).json({ lastUpdate });
   } catch (err) {
     console.error(err);

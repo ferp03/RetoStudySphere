@@ -6,6 +6,7 @@ import './User.css';
 
 const User = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -19,6 +20,7 @@ const User = () => {
         const data = response.data;
         if (response.status === 200) {
           setUserInfo(data.userInfo);
+          setLastUpdate(result.data.lastUpdate);
         } else {
           console.error('Failed to fetch user info:', data.error);
         }
@@ -39,7 +41,7 @@ const User = () => {
         currentPassword,
         newPassword,
       }, { withCredentials: true });
-  
+
       if (response.status === 200) {
         setMessage({ text: 'Password changed successfully', isSuccess: true });
       } else {
@@ -50,7 +52,6 @@ const User = () => {
       setMessage({ text: `An error occurred while changing password: ${error.message}`, isSuccess: false });
     }
   };
-  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -82,6 +83,10 @@ const User = () => {
               <tr>
                 <td><strong>Email:</strong></td>
                 <td>{userInfo.info.correo}</td>
+              </tr>
+              <tr>
+                <td><strong>Last Update:</strong></td>
+                <td>{lastUpdate ? new Date(lastUpdate).toLocaleString() : 'N/A'}</td>
               </tr>
             </tbody>
           </table>
