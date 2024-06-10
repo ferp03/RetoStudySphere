@@ -3,9 +3,9 @@ import './BotonesChatBot.css';
 
 const Botones = ({ onButtonClick }) => {
   const buttons = [
-    { icon: "fas fa-question", text: "How many points did I get in the exam?" },
-    { icon: "fas fa-calendar", text: "When do I have exam?" },
-    { icon: "fas fa-user", text: "What is my Final Grade?" }
+    { icon: "fas fa-question", text: "¿En qué Clases estoy inscrito?" },
+    { icon: "fas fa-calendar", text: "Cuales son los ids de mis Clases a las que estoy inscrito?" },
+    { icon: "fas fa-user", text: "De que se tratan mis clases?" }
   ];
 
   return (
