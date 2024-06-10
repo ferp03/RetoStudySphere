@@ -159,3 +159,25 @@
   padding: 5px;
   border-radius: 20px;
 }
+
+.results-section {
+  text-align: center;
+  background-color: #000;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #ffffff;
+}
+
+.results-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.results-section p {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #ffffff;
+}

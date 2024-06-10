@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { AuthContext } from "../AuthContext";
 import NavBar from "../Components/NavBar";
 import QuizMaestro from "../Components/QuizMaestro";
-import Logo from "../Components/Logo";
 import QuizEstudiante from "../Components/QuizEstudiante";
 import "./QuizPage.css";
 
@@ -17,13 +16,13 @@ const QuizPage = () => {
         if(userType === 'maestro'){
             return(
                 <>
-                <QuizMaestro quizId={quizId}/>
+                <QuizMaestro quizId={quizId} claseId={claseId}/>
                 </>
             )
         }else{
             return(
                 <>
-                <QuizEstudiante quizId={quizId}/>
+                <QuizEstudiante quizId={quizId} claseId={claseId}/>
                 </>
             )
         }

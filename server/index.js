@@ -300,7 +300,6 @@ app.get("/getQuizzes/:classId", async (req, res) => {
 });
 
 
-
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");
 });
