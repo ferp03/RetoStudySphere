@@ -328,16 +328,16 @@ app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
   }
 });
 
-app.get("/getAlumnos", async (res) => {
-  try{
+app.get("/getAlumnos", async (req, res) => { // Cambiado de "res" a "req, res"
+  try {
     const [result] = await db.query("SELECT * FROM vista_alumnos");
-    res.json(result);
-    res.status(200).json(result.rows);
-  }catch (err){
+    res.status(200).json(result); // Elimina la línea redundante
+  } catch (err) {
     console.error("Error retrieving data:", err);
-    res.status(500).json({error: "An error ocurred while retrieving data."});
+    res.status(500).json({ error: "An error occurred while retrieving data." });
   }
 });
+
 
 
 app.get("/", (res) => {
