@@ -336,10 +336,11 @@ app.get("/getAlumnos", async (req, res) => {
 
     // Transformar los datos agrupándolos por usuarioId
     const groupedAlumnos = alumnos.reduce((acc, alumno) => {
-        const { usuarioId, nombre_usuario, correo, claseId, nombreClase } = alumno;
+        const { usuarioId, alumnoId, nombre_usuario, correo, claseId, nombreClase } = alumno;
         if (!acc[usuarioId]) {
             acc[usuarioId] = {
                 usuarioId,
+                alumnoId,
                 nombre_usuario,
                 correo,
                 clases: []
