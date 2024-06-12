@@ -5,4 +5,71 @@
   .list-group-item {
     background-color: white;
   }
+
+  .p-15{
+    padding: 15px 0;
+  }
+
+.table-border{
+    overflow-y: auto;
+    padding: 0px;
+}
+
+.d-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    overflow-y: hidden;
+    max-height: 60vh;
+    overflow: hidden;
+}
+
+.container-custom {
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
   
+  .container-custom::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: var(--gradient-border);
+    border-radius: 10px;
+    z-index: -1;
+  }
+  
+  @keyframes border-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+  
+  .table-custom-bg {
+    background-color: white;
+  }
+  
+  .list-group-item {
+    background-color: white;
+  }
+
+  
+  .table-border {
+    --border-angle: 0turn;
+    --gradient-border: conic-gradient(from var(--border-angle), transparent 0%, #b8b8b8, #c4c4c4 50%, transparent 20%);
+    padding: 3px;
+    border-radius: 15px;
+    animation: border-spin 4s linear infinite;
+  }
+  
+  .table-responsive {
+    max-height: 65%; /* Asegurar que la tabla se ajuste al contenedor */
+    overflow-y: auto;
+}

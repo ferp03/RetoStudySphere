@@ -55,8 +55,6 @@ const Past = ({ claseId }) => {
     fetchQuizzesInfo();
   }, [claseId]);
 
-  // Convert quizzesInfo to an array of values
-  console.log(quizzesInfo);
   const quizzesToRender = Object.values(quizzesInfo || {}).reduce((acc, quiz) => {
     if (!acc[quiz.quizid]) {
       acc[quiz.quizid] = {
@@ -70,14 +68,13 @@ const Past = ({ claseId }) => {
     acc[quiz.quizid].num_students += 1;
     return acc;
   }, {});
-  console.log("qr",quizzesToRender);
+
 
   const quizzesArray = Object.values(quizzesToRender).map((quiz) => ({
     quizid: quiz.quizid,
     average_score: quiz.total_score / quiz.num_students,
     nombre: quiz.nombre,
   }));
-  console.log("qa",quizzesArray);
 
   const handleQuizClick = (quizid, _title) => {
     const quiz = Object.entries(quizzesInfo || {}).reduce((acc, [nombre, detalles]) => {

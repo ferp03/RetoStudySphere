@@ -87,9 +87,9 @@ const ClassPage = () => {
         }
         if(current === 4){
             return(
-                <div>
+                <>
                     <AddStudent claseId={claseId}/>
-                </div>
+                </>
             )
         }
     }

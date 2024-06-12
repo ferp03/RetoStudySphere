@@ -360,6 +360,17 @@ app.get("/getAlumnos", async (req, res) => {
 }
 });
 
+app.post("/signAlumnoToClass", async (req, res) =>{
+  const {alumnoId, claseId} = req.body;
+
+  try{
+    const result = db.query("INSERT INTO clase_alumno (claseId, alumnoId) VALUES($1, $2);", [claseId, alumnoId]);
+    res.status(200).json({message: "Student registered to class correctly"});
+  }catch (err){
+    console.log("Error registering student:", err);
+    res.status(500).json({error: "Error registering student"});
+  }
+})
 
 
 app.get("/", (req, res) => {
