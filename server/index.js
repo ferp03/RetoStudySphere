@@ -330,13 +330,33 @@ app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
 
 app.get("/getAlumnos", async (req, res) => {
   try {
-      const result = await db.query("SELECT GetAlumnosAsJson() as alumnos;");
-      const alumnosJson = result.rows[0].alumnos;
-      res.status(200).json(alumnosJson);
-  } catch (err) {
-      console.error("Error retrieving data:", err);
-      res.status(500).json({ error: "An error occurred while retrieving data." });
-  }
+    const result = await db.query("SELECT GetAlumnosAsJson() as alumnos;");
+    const alumnosData = result.rows[0].alumnos;
+    const alumnos = JSON.parse(alumnosData);
+
+    // Transformar los datos agrupándolos por usuarioId
+    const groupedAlumnos = alumnos.reduce((acc, alumno) => {
+        const { usuarioId, nombre_usuario, correo, claseId, nombreClase } = alumno;
+        if (!acc[usuarioId]) {
+            acc[usuarioId] = {
+                usuarioId,
+                nombre_usuario,
+                correo,
+                clases: []
+            };
+        }
+        acc[usuarioId].clases.push({ claseId, nombreClase });
+        return acc;
+    }, {});
+
+    // Convertir el objeto en un array
+    const transformedData = Object.values(groupedAlumnos);
+
+    res.status(200).json(transformedData);
+} catch (err) {
+    console.error("Error retrieving data:", err);
+    res.status(500).json({ error: "An error occurred while retrieving data." });
+}
 });
 
 
