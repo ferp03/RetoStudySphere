@@ -56,9 +56,28 @@ const Past = ({ claseId }) => {
   }, [claseId]);
 
   // Convert quizzesInfo to an array of values
-  const quizzesToRender = Object.values(quizzesInfo || {}).filter((quiz) =>
-    quizArr.some((q) => q.quizid === quiz.quizid)
-  );
+  console.log(quizzesInfo);
+  const quizzesToRender = Object.values(quizzesInfo || {}).reduce((acc, quiz) => {
+    if (!acc[quiz.quizid]) {
+      acc[quiz.quizid] = {
+        quizid: quiz.quizid,
+        total_score: 0,
+        num_students: 0,
+        nombre: quizArr.find((q) => q.quizid === quiz.quizid)?.nombre || quiz.quizid,
+      };
+    }
+    acc[quiz.quizid].total_score += quiz.calificacion;
+    acc[quiz.quizid].num_students += 1;
+    return acc;
+  }, {});
+  console.log("qr",quizzesToRender);
+
+  const quizzesArray = Object.values(quizzesToRender).map((quiz) => ({
+    quizid: quiz.quizid,
+    average_score: quiz.total_score / quiz.num_students,
+    nombre: quiz.nombre,
+  }));
+  console.log("qa",quizzesArray);
 
   const handleQuizClick = (quizid, _title) => {
     const quiz = Object.entries(quizzesInfo || {}).reduce((acc, [nombre, detalles]) => {
@@ -75,7 +94,7 @@ const Past = ({ claseId }) => {
     <div className="pastcontainer">
       {!selectedQuiz ? (
         <div className="quizzes-grid">
-          {quizzesToRender.map((quiz, index) => {
+          {quizzesArray.map((quiz, index) => {
             const correspondingQuiz = quizArr.find((q) => q.quizid === quiz.quizid);
             return (
               <div
@@ -84,15 +103,15 @@ const Past = ({ claseId }) => {
                 onClick={() => handleQuizClick(quiz.quizid, correspondingQuiz ? correspondingQuiz.nombre : quiz.quizid)}
               >
                 <div className="quiz-title">{`${correspondingQuiz ? correspondingQuiz.nombre : quiz.quizid}`}</div>
-                <div className="quiz-percentage">{`${quiz.calificacion}%`}</div>
-                <div className="quiz-score">{quiz.calificacion}/100 Average</div>
+                <div className="quiz-percentage">{`${quiz.average_score}%`}</div>
+                <div className="quiz-score">{`${quiz.average_score}/100 Average`}</div>
               </div>
             );
           })}
         </div>
       ) : (
         <div className="quiz-details-container">
-          <QuizDetails quiz={selectedQuiz} title={qTitle}/>
+          <QuizDetails quiz={selectedQuiz} title={qTitle} />
         </div>
       )}
     </div>

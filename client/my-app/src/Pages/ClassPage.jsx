@@ -5,6 +5,7 @@ import AddQuizForm from "../Components/AddQuizForm";
 import Past from "../Components/Past";
 import Ongoing from "../Components/Ongoing";
 import { AuthContext } from "../AuthContext";
+import AddStudent from "../Components/AddStudent";
 import "./ClassPage.css";
 
 
@@ -33,6 +34,11 @@ const ClassPage = () => {
                         <h3 style={{cursor: "pointer", textDecoration: current===3 ? "underline" : ""}}
                             onClick={() => setCurrent(3)}
                             >Add Quiz</h3>
+                        </div>
+                        <div className="quizzes-box">
+                            <h3 style={{cursor: "pointer", textDecoration: current===4 ? "underline" : ""}}
+                            onClick={() => setCurrent(4)}
+                            >Add Student</h3>
                         </div>
                     </div>
                 </div>
@@ -76,6 +82,13 @@ const ClassPage = () => {
                     <div className="add-quiz-table">
                         <AddQuizForm claseId={claseId} />
                     </div>
+                </div>
+            )
+        }
+        if(current === 4){
+            return(
+                <div>
+                    <AddStudent claseId={claseId}/>
                 </div>
             )
         }

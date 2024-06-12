@@ -328,13 +328,23 @@ app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
   }
 });
 
+app.get("/getAlumnos", async (res) => {
+  try{
+    const [result] = await db.query("SELECT * FROM vista_alumnos");
+    res.json(result);
+    res.status(200).json(result.rows);
+  }catch (err){
+    console.error("Error retrieving data:", err);
+    res.status(500).json({error: "An error ocurred while retrieving data."});
+  }
+});
 
 
-app.get("/", (req, res) => {
+app.get("/", (res) => {
   res.send("Welcome to the API!");
 });
 
-app.use((err, req, res, next) => {
+app.use((err, res) => {
   console.error("Unhandled error:", err);
   res.status(500).send("An error occurred");
 });
