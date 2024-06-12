@@ -328,7 +328,7 @@ app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
   }
 });
 
-app.get("/getAlumnos", async (req, res) => { // Cambiado de "res" a "req, res"
+app.get("/getAlumnos", async (req, res) => {
   try {
     const [result] = await db.query("SELECT * FROM vista_alumnos");
     res.status(200).json(result); // Elimina la línea redundante
@@ -340,11 +340,11 @@ app.get("/getAlumnos", async (req, res) => { // Cambiado de "res" a "req, res"
 
 
 
-app.get("/", (res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to the API!");
 });
 
-app.use((err, res) => {
+app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
   res.status(500).send("An error occurred");
 });
