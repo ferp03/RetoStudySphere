@@ -41,10 +41,7 @@ const LoginDiseño = () => {
         navigate('/');
       };
 
-      const handleGoogleLogin = () => {
-        window.location.href = axiosInstance.post("/auth/google");
 
-      };
     
       return (
         <div className='backgroundContainer'>
@@ -91,18 +88,9 @@ const LoginDiseño = () => {
                     <div className='LoginButtonContainer'>
                         <button type="submit" className="btn btn-dark" style={{width: '90%', height: '60px', borderRadius: '15px'}}>Log In</button>
                     </div>
-                    <div className='LoginLinesContainer'>
-                        <div className='LoginLines'/>
-                        <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>o continuar con</p>
-                        <div className='LoginLines'/>
-                    </div>
+
                     {/* Botón de Google  */}
-                    <div className='LoginGoogleButtonContainer'>
-                        <button type="button" onClick={handleGoogleLogin} className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
-                            <i className="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
-                            Google
-                        </button>
-                    </div>
+
                     {/* Redirect a sign up */}
                     <div className='LoginRegistrateContainer'>
                         <label>¿No tienes cuenta?</label>
