@@ -5,6 +5,7 @@ import AddQuizForm from "../Components/AddQuizForm";
 import Past from "../Components/Past";
 import Ongoing from "../Components/Ongoing";
 import { AuthContext } from "../AuthContext";
+import AddStudent from "../Components/AddStudent";
 import "./ClassPage.css";
 
 
@@ -27,12 +28,17 @@ const ClassPage = () => {
                         <div className="quizzes-box">
                             <h3 style={{cursor: "pointer", textDecoration: current===2 ? "underline" : ""}}
                             onClick={() => setCurrent(2)}
-                            >Past Quizzes</h3>
+                            >Quizzes Results</h3>
                         </div>
                         <div className="quizzes-box">
                         <h3 style={{cursor: "pointer", textDecoration: current===3 ? "underline" : ""}}
                             onClick={() => setCurrent(3)}
                             >Add Quiz</h3>
+                        </div>
+                        <div className="quizzes-box">
+                            <h3 style={{cursor: "pointer", textDecoration: current===4 ? "underline" : ""}}
+                            onClick={() => setCurrent(4)}
+                            >Add Student</h3>
                         </div>
                     </div>
                 </div>
@@ -67,7 +73,7 @@ const ClassPage = () => {
             )
         }
         if(current===2){
-            return <Past />
+            return <Past claseId={claseId}/>
         }
         if(current===3){
             return(
@@ -77,6 +83,13 @@ const ClassPage = () => {
                         <AddQuizForm claseId={claseId} />
                     </div>
                 </div>
+            )
+        }
+        if(current === 4){
+            return(
+                <>
+                    <AddStudent claseId={claseId}/>
+                </>
             )
         }
     }

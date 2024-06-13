@@ -224,6 +224,7 @@ app.get("/getUserLastUpdate", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving the user's last update." });
   }
 });
+
 app.post("/changePassword", async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   const userId = req.session.userId;
@@ -298,6 +299,78 @@ app.get("/getQuizzes/:classId", async (req, res) => {
     res.status(500).json({ error: "An error occurred while retrieving quizzes" });
   }
 });
+
+app.post("/submitQuizResults", async (req, res) => {
+  const { alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance } = req.body;
+
+  try {
+    await db.query(
+      `INSERT INTO Alumno_Clase_Quiz (alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [alumnoId, claseId, quizId, incorrectas, correctas, calificacion, confidence, performance]
+    );
+    res.status(200).json({ message: "Quiz results submitted successfully" });
+  } catch (err) {
+    console.error("Error inserting quiz results:", err);
+    res.status(500).json({ error: "An error occurred while submitting quiz results" });
+  }
+});
+
+app.get("/getAlumnoClaseQuiz/:claseId", async (req, res) => {
+  const claseId = parseInt(req.params.claseId, 10);
+
+  try {
+    const result = await db.query("SELECT obtener_alumno_clase_quiz($1)", [claseId]);
+    res.status(200).json(result.rows[0].obtener_alumno_clase_quiz);
+  } catch (err) {
+    console.error("Error retrieving data:", err);
+    res.status(500).json({ error: "An error occurred while retrieving data." });
+  }
+});
+
+app.get("/getAlumnos", async (req, res) => {
+  try {
+    const result = await db.query("SELECT GetAlumnosAsJson() as alumnos;");
+    const alumnosData = result.rows[0].alumnos;
+    const alumnos = JSON.parse(alumnosData);
+
+    // Transformar los datos agrupándolos por usuarioId
+    const groupedAlumnos = alumnos.reduce((acc, alumno) => {
+        const { usuarioId, alumnoId, nombre_usuario, correo, claseId, nombreClase } = alumno;
+        if (!acc[usuarioId]) {
+            acc[usuarioId] = {
+                usuarioId,
+                alumnoId,
+                nombre_usuario,
+                correo,
+                clases: []
+            };
+        }
+        acc[usuarioId].clases.push({ claseId, nombreClase });
+        return acc;
+    }, {});
+
+    // Convertir el objeto en un array
+    const transformedData = Object.values(groupedAlumnos);
+
+    res.status(200).json(transformedData);
+} catch (err) {
+    console.error("Error retrieving data:", err);
+    res.status(500).json({ error: "An error occurred while retrieving data." });
+}
+});
+
+app.post("/signAlumnoToClass", async (req, res) =>{
+  const {alumnoId, claseId} = req.body;
+
+  try{
+    const result = db.query("INSERT INTO clase_alumno (claseId, alumnoId) VALUES($1, $2);", [claseId, alumnoId]);
+    res.status(200).json({message: "Student registered to class correctly"});
+  }catch (err){
+    console.log("Error registering student:", err);
+    res.status(500).json({error: "Error registering student"});
+  }
+})
 
 
 app.get("/", (req, res) => {

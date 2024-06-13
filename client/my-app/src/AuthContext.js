@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userType, setUserType] = useState(() => localStorage.getItem('userType') || '');
   const [nombreUsuario, setNombreUsuario] = useState(() => localStorage.getItem('nombreUsuario') || '');
+  const [id, setId] = useState(() => localStorage.getItem('id') || '');
   const [quizArr, setQuizArr] = useState(() => {
     const savedQuizArr = localStorage.getItem('quizArr');
     return savedQuizArr ? JSON.parse(savedQuizArr) : [];
@@ -26,12 +27,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (userType && nombreUsuario) {
+    if (userType && nombreUsuario && id) {
       localStorage.setItem('userType', userType);
       localStorage.setItem('nombreUsuario', nombreUsuario);
+      localStorage.setItem('id', id);
     } else {
       localStorage.removeItem('userType');
       localStorage.removeItem('nombreUsuario');
+      localStorage.removeItem('id');
     }
 
     if (Array.isArray(quizArr) && quizArr.length > 0) {
@@ -39,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     } else {
       localStorage.removeItem('quizArr');
     }
-  }, [userType, quizArr, nombreUsuario]);
+  }, [userType, quizArr, nombreUsuario, id]);
 
   const logout = async () => {
     try {
@@ -53,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, userType, setUserType, nombreUsuario, setNombreUsuario, quizArr, setQuizArr, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, userType, setUserType, nombreUsuario, setNombreUsuario, id, setId, quizArr, setQuizArr, logout }}>
       {children}
     </AuthContext.Provider>
   );
