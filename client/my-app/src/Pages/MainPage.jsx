@@ -59,7 +59,8 @@ const MainPage = () => {
         <NavBar />
         <div className='content'>
           <Header userInfo={userInfo} />
-          <div>
+          <div className='body-container'>
+            <AddClasses isMaestro={userType} />
             <p>No tienes clases registradas, habla con tu maestro para que te enrole en la clase que buscas</p>
           </div>
         </div>
@@ -76,6 +77,7 @@ const MainPage = () => {
   
     const handleClose = () => {
       setShowModal(false);
+      window.location.reload();
     };
     let flag = isMaestro === 'maestro';
     if(flag){
