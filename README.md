@@ -16,5 +16,15 @@ StudySphere was created with the goal of revolutionizing the educational experie
 
 * **Astro Blast Game:** To help students manage stress, StudySphere includes a game called Astro Blast, developed with Unity and C#. This game provides a fun and engaging way for students to unwind and take a break from their studies.
 
+## Technology Stack
+
+* **Front-end:** React.js
+* **Back-end:** Node.js and Express.js
+* **Database:** PostgreSQL
+* **Hosting:** Vercel
+* **AI Integration:** OpenAI for adaptive interactions
+* **Game Development:** Unity and C# for the Astro Blast game
+
+
 
 
