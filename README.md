@@ -7,6 +7,7 @@ StudySphere was created with the goal of revolutionizing the educational experie
 ## Key Features
 
 * Interactive Avatars and Gamification: The platform features engaging avatars and gamified elements that make learning more enjoyable. Students earn points and badges, encouraging consistent participation and effort.
+  
 * Personalized Learning: Utilizing OpenAI, StudySphere adapts to each student's learning behavior, providing customized feedback and suggestions to enhance their learning experience.
 * 
 
