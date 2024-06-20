@@ -37,7 +37,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 
 
-<img src= "images/login.jpg" width = 600> <img src= "images/login.jpg" width = 600 behavior="alternate" direction="left">
+<img src= "images/login.jpg" width = 600> <img src= "images/login.jpg" width = 600 align = left>
 
 
 
