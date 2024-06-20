@@ -37,7 +37,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 
 ![WEB_PAGE](images/login.jpg)
-<img src= "images/login.jpg" width = 60 height = 60>
+<img src= "images/login.jpg" width = 30 height = 30>
 
 
 
