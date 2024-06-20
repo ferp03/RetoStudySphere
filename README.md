@@ -6,7 +6,7 @@ StudySphere was created with the goal of revolutionizing the educational experie
 
 ## Key Features
 
-* Comprehensive Class Management: The platform allows educators to manage classes, enroll students, and monitor their progress efficiently, all within a user-friendly interface.
+* **Comprehensive Class Management:** The platform allows educators to manage classes, enroll students, and monitor their progress efficiently, all within a user-friendly interface.
 
 * Interactive Avatars and Gamification: The platform features engaging avatars and gamified elements that make learning more enjoyable. Students earn points and badges, encouraging consistent participation and effort.
   
