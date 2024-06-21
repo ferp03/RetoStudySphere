@@ -122,7 +122,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 **@SofiaSchneider-dev**
 **@Alejandrocharles**
 **@mirelesDavid**
-**mnoriega-mx**
+**@mnoriega-mx**
 **SergioVargasDev**
 
 
