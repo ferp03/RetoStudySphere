@@ -50,7 +50,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 <img src= "images/menu.jpg" width = 412> <img src= "images/profile.jpg" width = 412> 
 
 <p align="center">
-  <img width="412" height="250" src="images/addClass.jpg">
+  <img width="412" height="280" src="images/addClass.jpg">
 </p>
 
 
