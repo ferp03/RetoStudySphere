@@ -36,8 +36,8 @@ StudySphere addresses several critical issues in modern education. Traditional l
 For educational institutions, StudySphere offers a comprehensive solution to enhance both teaching and administrative processes. The platform simplifies class management, student enrollment, and progress tracking, making it easier for educators to focus on teaching rather than administrative tasks. The real-time scoring and feedback features allow teachers to monitor student performance continuously, identify areas where students struggle, and adjust their teaching strategies accordingly. Additionally, the inclusion of the Astro Blast game provides a valuable tool for schools to support student well-being by offering a fun way to relieve stress, thereby promoting a healthier, more balanced learning environment.
 
  
-## Login                                   Register
-<img src= "images/login.jpg" width = 300t> <img src= "images/login.jpg" width = 300>
+## Login/Register
+<img src= "images/login.jpg" width = 400> <img src= "images/login.jpg" width = 400>
 
 
 
