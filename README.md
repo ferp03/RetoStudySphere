@@ -106,6 +106,19 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
   <img width="425" height="240" src="images/simulationsStudent2.jpg">
 </p>
 
+## Astro Blast
+
+<p align="center">
+  <img width="425" height="240" src="images/astro.jpg">
+</p>
+
+## Tutor AI
+
+<img src= "images/tutorAI.jpg" width = 412> <img src= "images/tutorAI2.jpg" width = 412> 
+
+
+
+
 
 
 
