@@ -1,5 +1,5 @@
 # StudySphere
-<img src= "images/logo.jpg width  400 align = center">
+<img src= "images/logo.jpg" width = 400 align = center>
 
 ## Purpose
 
