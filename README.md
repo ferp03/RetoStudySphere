@@ -53,6 +53,18 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
   <img width="425" height="240" src="images/addClass.jpg">
 </p>
 
+## Ongoing Quizzes
+
+
+## Quizzes Results
+
+
+
+
+
+
+
+
 
 
 
