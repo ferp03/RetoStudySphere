@@ -70,6 +70,8 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 # Student's Perspective
 
+<img src= "images/menu.jpg" width = 412> <img src= "images/profileStudent" width = 412> 
+
 
 
 
