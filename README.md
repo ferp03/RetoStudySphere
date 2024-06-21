@@ -47,7 +47,12 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 ## Menu/Profile Information/Add Class
 
-<img src= "images/menu.jpg" width = 300> <img src= "images/profile.jpg" width = 300> <img src= "images/addClass.jpg" width = 300>
+<img src= "images/menu.jpg" width = 412> <img src= "images/profile.jpg" width = 412> 
+
+<p align="center">
+  <img width="412" height="412" src="images/addClass.jpg">
+</p>
+
 
 
 
