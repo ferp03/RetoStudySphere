@@ -72,7 +72,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 ## Menu/Profile Information
 
-<img src= "images/menu.jpg" width = 412> <img src= "images/menuStudent.jpg" width = 412> 
+<img src= "images/menuStudent.jpg" width = 412>  <img src= "images/profileStudent.jpg" width = 412> 
 
 
 
