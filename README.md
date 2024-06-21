@@ -118,12 +118,12 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 ## Collaborators
 
-**@ferpo3**
-**@SofiaSchneider-dev**
-**@Alejandrocharles**
-**@mirelesDavid**
-**@mnoriega-mx**
-**SergioVargasDev**
+* **@ferpo3**
+* **@SofiaSchneider-dev**
+* **@Alejandrocharles**
+* **@mirelesDavid**
+* **@mnoriega-mx**
+* **SergioVargasDev**
 
 
 
