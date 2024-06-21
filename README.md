@@ -37,7 +37,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
  
 ## Login/Register
-<img src= "images/login.jpg" width = 550> <img src= "images/login.jpg" width = 550>
+<img src= "images/login.jpg" width = 500> <img src= "images/login.jpg" width = 500>
 
 
 
