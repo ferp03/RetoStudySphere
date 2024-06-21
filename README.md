@@ -114,7 +114,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 ## Tutor AI
 
-<img src= "images/tutorAI.jpg" width = 412> <img src= "images/tutorAI2.jpg" width = 412> 
+<img src= "images/tutorAi.jpg" width = 412> <img src= "images/tutorAI2.jpg" width = 412> 
 
 
 
