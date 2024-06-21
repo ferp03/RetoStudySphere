@@ -1,4 +1,5 @@
 # StudySphere
+<img src= "images/logo.jpg">
 
 ## Purpose
 
