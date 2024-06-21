@@ -123,6 +123,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 **@Alejandrocharles**
 **@mirelesDavid**
 **mnoriega-mx**
+**SergioVargasDev**
 
 
 
