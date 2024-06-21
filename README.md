@@ -72,7 +72,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 ## Add Student
 
 <p align="center">
-  <img width="425" height="240" src="images/QuizAddStudent.jpg">
+  <img width="425" height="240" src="images/quizAddStudent.jpg">
 </p>
 
 
