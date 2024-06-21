@@ -43,7 +43,7 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 ## Login/Register
 <img src= "images/login.jpg" width = 412> <img src= "images/signup.jpg" width = 412>
 
-# Teacher Perspective
+# Teacher's Perspective
 
 ## Menu/Profile Information/Add Class
 
