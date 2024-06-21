@@ -29,7 +29,8 @@ StudySphere was created with the goal of revolutionizing the educational experie
 ![Node.js](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 
-* **Database:** PostgreSQL
+### Database:
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 * **Hosting:** Vercel
 * **AI Integration:** OpenAI for adaptive interactions
 * **Game Development:** Unity and C# for the Astro Blast game
