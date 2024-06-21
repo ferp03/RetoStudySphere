@@ -55,8 +55,16 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 ## Ongoing Quizzes
 
+<p align="center">
+  <img width="425" height="240" src="images/quizOngoing.jpg">
+</p>
 
 ## Quizzes Results
+
+<img src= "images/quizResult.jpg" width = 412> <img src= "images/quizResult2.jpg" width = 412> 
+
+
+
 
 
 
