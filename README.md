@@ -1,6 +1,6 @@
 # StudySphere
 <p align="center">
-  <img width="350" height="300" src="images/logo.jpg">
+  <img width="460" height="300" src="images/logo.jpg">
 </p>
 
 
