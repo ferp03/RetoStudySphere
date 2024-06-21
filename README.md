@@ -22,7 +22,8 @@ StudySphere was created with the goal of revolutionizing the educational experie
 
 ## Technology Stack
 
-* **Front-end:** ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+* **Front-end:**
+* ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 * **Back-end:** Node.js and Express.js
 * **Database:** PostgreSQL
 * **Hosting:** Vercel
