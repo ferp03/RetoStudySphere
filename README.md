@@ -76,7 +76,6 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 </p>
 
 
-
 ## Quiz Simulation
 
 <img src= "images/quizSimulation.jpg" width = 412> <img src= "images/quizSimulation2.jpg" width = 412> 
@@ -86,6 +85,22 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 ## Menu/Profile Information
 
 <img src= "images/menuStudent.jpg" width = 412>  <img src= "images/profileStudent.jpg" width = 412> 
+
+## Ongoing Quizzes
+
+<p align="center">
+  <img width="425" height="240" src="images/ongoingQuizStudent.jpg">
+</p>
+
+## Past Quizzes
+
+<p align="center">
+  <img width="425" height="240" src="images/pastQuizStudent.jpg">
+</p>
+
+
+
+
 
 
 
