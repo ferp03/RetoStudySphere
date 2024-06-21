@@ -64,6 +64,12 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 <img src= "images/quizResult.jpg" width = 412> <img src= "images/quizResult2.jpg" width = 412> 
 
 
+## Quiz Simulation
+
+<img src= "images/quizSimulation.jpg" width = 412> <img src= "images/quizSimulation2.jpg" width = 412> 
+
+
+
 
 
 
