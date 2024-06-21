@@ -116,6 +116,14 @@ For educational institutions, StudySphere offers a comprehensive solution to enh
 
 <img src= "images/tutorAi.jpg" width = 412> <img src= "images/tutorAI2.jpg" width = 412> 
 
+## Collaborators
+
+**@ferpo3**
+**@SofiaSchneider-dev**
+**@Alejandrocharles**
+**@
+
+
 
 
 
