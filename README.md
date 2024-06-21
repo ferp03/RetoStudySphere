@@ -22,7 +22,7 @@ StudySphere was created with the goal of revolutionizing the educational experie
 
 ## Technology Stack
 
- - **Front-end:**
+ -- **Front-end:**
 <br>
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
