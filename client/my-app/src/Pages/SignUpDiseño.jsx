@@ -58,11 +58,11 @@ return (
 
             <div className='LoginContainer'>
                 <form className='FormsContainer' onSubmit={handleSubmit}>
-                    <h2 style={{margin: 0}}>¡Bienvenido a StudySphere!</h2>
-                    <h5 style={{margin: 0}}>Ingresa tus datos para registrarte en la mejor plataforma de quizzes</h5>
+                    <h2 style={{margin: 0}}>¡Welcome to StudySphere!</h2>
+                    <h5 style={{margin: 0}}>Type in your information to get started in the best quizzes platform!</h5>
                 {/* Forms e inputs */}
                     <div className='titleIconContainer'>
-                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Nombre</h3>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Name</h3>
                         <i className="fa-solid fa-user" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
@@ -71,7 +71,7 @@ return (
                         onChange={(e) => setName(e.target.value)}/>
 
                     <div className='titleIconContainer'>
-                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Correo electrónico</h3>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Email</h3>
                         <i className="fa-solid fa-envelope" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
@@ -80,7 +80,7 @@ return (
                         onChange={(e) => setEmail(e.target.value)}/
                         >
                     <div className='titleIconContainer'>
-                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Contraseña</h3>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Password</h3>
                         <i className="fa-solid fa-lock" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
@@ -95,14 +95,14 @@ return (
                                     <input className="form-check-input" type="checkbox"
                                     checked={isTeacher}
                                     onChange={(e) => setIsTeacher(e.target.checked)}/>
-                                    Soy Maestro
+                                    I'm a Teacher
                                 </label>
                             </div>
 
                             <div className="form-check">
                             <label className="form-check-label" htmlFor="flexCheckDefault">
                                 <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                                Acepto <t style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline'}}>términos y condiciones</t>
+                                I accept <t style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline'}}>terms and conditions</t>
                             </label>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ return (
                         </div>
                         <div className='LoginLinesContainer'>
                             <div className='LoginLines'/>
-                            <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>o continuar con</p>
+                            <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>or continue with</p>
                             <div className='LoginLines'/>
                         </div>
                 {/* Botón de Google  */}
@@ -124,9 +124,9 @@ return (
                         </div>
                 {/* Redirect a Login */}
                         <div className='LoginRegistrateContainer'>
-                            <label>¿Ya tienes una cuenta?</label>
+                            <label>Already have an account?</label>
                             <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline', marginLeft: 5}}
-                            onClick={handleLoginClick}> Inicia sesión</label>
+                            onClick={handleLoginClick}> Log in </label>
                         </div>
                 </form>
             </div> 

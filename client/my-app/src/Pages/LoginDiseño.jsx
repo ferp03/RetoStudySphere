@@ -24,11 +24,11 @@ const LoginDiseño = () => {
                 setIsAuthenticated(true);
                 handleLoginClick();
             } else {
-                setErrorMessage("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+                setErrorMessage("Incorrect credentials. Please, try it again.");
             }
         } catch (error) {
-            console.error("Error al iniciar sesión:", error);
-            setErrorMessage("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+            console.error("Error logging in:", error);
+            setErrorMessage("Error logging in. Please, verify your credentials.");
         }
     };
     
@@ -50,8 +50,8 @@ const LoginDiseño = () => {
         <div className='backgroundContainer'>
             <div className='LoginContainer'>
                 <form className='FormsContainer' onSubmit={handleSubmit}>
-                    <h2 style={{margin: 0}}>¡Bienvenido!</h2>
-                    <h5 style={{margin: 0}}>Ingresa tus credenciales para ingresar</h5>
+                    <h2 style={{margin: 0}}>Welcome Back!</h2>
+                    <h5 style={{margin: 0}}>Type in your credentials to keep going!</h5>
                     {/* Mostrar mensaje de error */}
                     {errorMessage && (
                         <div className="error-message" style={{ color: 'red', marginTop: 10 }}>
@@ -60,7 +60,7 @@ const LoginDiseño = () => {
                     )}
                     {/* Forms e inputs */}
                     <div className='titleIconContainer'>
-                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Correo electrónico</h3>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Email</h3>
                         <i className="fa-solid fa-envelope" style={{marginBottom: 6}}></i>
                     </div>
                     <input className='ovalInput' 
@@ -69,7 +69,7 @@ const LoginDiseño = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <div className='titleIconContainer'>
-                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Contraseña</h3>
+                        <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Password</h3>
                         <i className="fa-solid fa-lock" style={{marginBottom: 6}}></i>
                     </div>
                     <input className='ovalInput' 
@@ -82,10 +82,10 @@ const LoginDiseño = () => {
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
                             <label className="form-check-label" htmlFor="flexCheckDefault">
-                                Recuerdame
+                                Remember me
                             </label>
                         </div>
-                        <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline'}}>Olvidé mi contraseña</label>
+                        <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline'}}>Forgot your password?</label>
                     </div>
                     {/* Botón de Log In */}
                     <div className='LoginButtonContainer'>
@@ -93,7 +93,7 @@ const LoginDiseño = () => {
                     </div>
                     <div className='LoginLinesContainer'>
                         <div className='LoginLines'/>
-                        <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>o continuar con</p>
+                        <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>or continue with</p>
                         <div className='LoginLines'/>
                     </div>
                     {/* Botón de Google  */}
@@ -105,10 +105,10 @@ const LoginDiseño = () => {
                     </div>
                     {/* Redirect a sign up */}
                     <div className='LoginRegistrateContainer'>
-                        <label>¿No tienes cuenta?</label>
+                        <label>Don't have an account?</label>
                         <label style={{cursor: 'pointer', color: 'blue', textDecoration: 'underline', marginLeft: 5}}
                             onClick={handleSignUpClick}> 
-                            Regístrate
+                            Register
                         </label>
                     </div>
                 </form>
