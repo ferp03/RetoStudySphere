@@ -63,7 +63,7 @@ return (
                 {/* Forms e inputs */}
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Name</h3>
-                        <i className="fa-solid fa-user" style={{marginBottom: 7}}></i>
+                        <i className="fas fa-solid fa-user" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
                         type='text'
@@ -72,7 +72,7 @@ return (
 
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Email</h3>
-                        <i className="fa-solid fa-envelope" style={{marginBottom: 7}}></i>
+                        <i className="fas fa-solid fa-envelope" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
                         type='email'
@@ -81,7 +81,7 @@ return (
                         >
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Password</h3>
-                        <i className="fa-solid fa-lock" style={{marginBottom: 7}}></i>
+                        <i className="fas fa-solid fa-lock" style={{marginBottom: 7}}></i>
                     </div>
                         <input className='ovalInput'
                         type='password'
@@ -112,16 +112,11 @@ return (
                         </div>
                         <div className='LoginLinesContainer'>
                             <div className='LoginLines'/>
-                            <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>or continue with</p>
+                            <div className='LoginLines'/>
                             <div className='LoginLines'/>
                         </div>
                 {/* Botón de Google  */}
-                        <div className='LoginGoogleButtonContainer'>
-                            <button type="button" onClick={handleGoogleSignUp} className="btn btn-secondary" style={{width: '30%', background: 'transparent', color: 'black', border: '1px solid black', borderRadius: '15px'}}>
-                                <i className="fab fa-google" style={{paddingRight: '10px', color: 'black'}}></i>
-                                Google
-                            </button>
-                        </div>
+
                 {/* Redirect a Login */}
                         <div className='LoginRegistrateContainer'>
                             <label>Already have an account?</label>

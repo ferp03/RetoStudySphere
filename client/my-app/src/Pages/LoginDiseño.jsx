@@ -58,7 +58,7 @@ const LoginDiseño = () => {
                     {/* Forms e inputs */}
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Email</h3>
-                        <i className="fa-solid fa-envelope" style={{marginBottom: 6}}></i>
+                        <i className="fas fa-solid fa-envelope" style={{marginBottom: 6}}></i>
                     </div>
                     <input className='ovalInput' 
                         type='email' 
@@ -67,7 +67,7 @@ const LoginDiseño = () => {
                     />
                     <div className='titleIconContainer'>
                         <h3 style={{marginBottom: 0, marginTop: 30, marginRight: 10}}>Password</h3>
-                        <i className="fa-solid fa-lock" style={{marginBottom: 6}}></i>
+                        <i className="fas fa-solid fa-lock" style={{marginBottom: 6}}></i>
                     </div>
                     <input className='ovalInput' 
                         type='password' 
@@ -91,7 +91,7 @@ const LoginDiseño = () => {
 
                     <div className='LoginLinesContainer'>
                         <div className='LoginLines'/>
-                        <p style={{margin: 0, paddingLeft: 8, paddingRight: 8, fontWeight: 500}}>or continue with</p>
+                        <div className='LoginLines'/>
                         <div className='LoginLines'/>
                     </div>
 
