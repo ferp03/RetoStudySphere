@@ -6,16 +6,16 @@ import "./Past.css";
 const QuizDetails = ({ quiz, title }) => {
   return (
     <div className="quiz-details">
-      <h2 className="quiz-title">Resultados de {title}</h2>
+      <h2 className="quiz-title">Answers from {title}</h2>
       <table className="quiz-table">
         <thead>
           <tr>
-            <th>Nombre del Alumno</th>
-            <th>Respuestas Incorrectas</th>
-            <th>Respuestas Correctas</th>
-            <th>Calificación</th>
-            <th>Confianza</th>
-            <th>Desempeño</th>
+            <th>Student Name</th>
+            <th>Incorrect Answers</th>
+            <th>Correct Answers</th>
+            <th>Grade</th>
+            <th>Confidence</th>
+            <th>Performance</th>
           </tr>
         </thead>
         <tbody>
