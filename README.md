@@ -6,7 +6,7 @@
 
 ## Purpose
 
-StudySphere was created with the goal of revolutionizing the educational experience by integrating modern technology to provide personalized, engaging, and effective learning. Developed for WBAN Solution, the platform aims to motivate students through interactive avatars, real-time feedback, and a gamified environment that makes learning fun and dynamic. By incorporating adaptive AI, StudySphere offers tailored feedback and interactions that cater to individual learning styles and needs, addressing the specific challenges faced by WBAN Solution in enhancing student engagement and learning outcomes.
+**StudySphere** was created with the goal of revolutionizing the educational experience by integrating modern technology to provide personalized, engaging, and effective learning. Developed for **WBAN Solution**, the platform aims to motivate students through interactive avatars, real-time feedback, and a gamified environment that makes learning fun and dynamic. By incorporating adaptive AI, StudySphere offers tailored feedback and interactions that cater to individual learning styles and needs, addressing the specific challenges faced by WBAN Solution in enhancing student engagement and learning outcomes.
 
 ## Key Features
 
@@ -48,7 +48,7 @@ StudySphere was created with the goal of revolutionizing the educational experie
 
 ### To WBAN Solution:
 
-StudySphere was specifically designed to address WBAN Solution's need for an innovative educational platform that enhances student engagement and learning outcomes. Traditional educational methods often struggle to captivate students, resulting in decreased motivation and participation. StudySphere tackles this issue head-on by incorporating gamified elements and interactive avatars, transforming the learning process into an engaging and dynamic experience. The adaptive AI ensures that each student receives personalized feedback, catering to their unique learning needs and helping to close knowledge gaps more effectively.
+**StudySphere** was specifically designed to address **WBAN Solution's** need for an innovative educational platform that enhances student engagement and learning outcomes. Traditional educational methods often struggle to captivate students, resulting in decreased motivation and participation. StudySphere tackles this issue head-on by incorporating gamified elements and interactive avatars, transforming the learning process into an engaging and dynamic experience. The adaptive AI ensures that each student receives personalized feedback, catering to their unique learning needs and helping to close knowledge gaps more effectively.
 
 
 
