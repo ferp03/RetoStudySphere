@@ -9,7 +9,7 @@ import axiosInstance from '../axiosInstance';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([
-    { text: '¡Hola! ¿En qué puedo ayudarte?', sender: 'bot' }
+    { text: 'Hi! In what can I help you?', sender: 'bot' }
   ]);
   const [showButtons, setShowButtons] = useState(true);
   const [userInfo, setUserInfo] = useState(null);

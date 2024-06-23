@@ -26,7 +26,7 @@ const ChatInput = ({ onSendMessage }) => {
         onKeyDown={handleKeyPress} 
         placeholder="Message..."
       ></textarea>
-      <button onClick={handleSend}>Enviar</button>
+      <button onClick={handleSend}>Send</button>
     </div>
   );
 };
